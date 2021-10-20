@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Kyosk</string>
+    <string name="home">HOME</string>
+    <string name="categories">CATEGORIES</string>
+    <string name="my_cart">MY CART</string>
+    <string name="payments">PAYMENT</string>
+    <string name="more">MORE</string>
 </resources>
