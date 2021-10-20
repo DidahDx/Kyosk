@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.github.didahdx.kyosk.ui.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/home_fragment" />
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.github.didahdx.kyosk.ui.catergories.CategoriesFragment"
+        android:label="@string/categories"
+        tools:layout="@layout/categories_fragment" />
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.github.didahdx.kyosk.ui.more.MoreFragment"
+        android:label="@string/more"
+        tools:layout="@layout/more_fragment" />
+    <fragment
+        android:id="@+id/myCartFragment"
+        android:name="com.github.didahdx.kyosk.ui.my_cart.MyCartFragment"
+        android:label="@string/my_cart"
+        tools:layout="@layout/my_cart_fragment" />
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.github.didahdx.kyosk.ui.payment.PaymentFragment"
+        android:label="@string/payments"
+        tools:layout="@layout/payment_fragment" />
+</navigation>
