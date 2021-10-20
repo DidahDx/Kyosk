@@ -16,7 +16,7 @@
         android:title="@string/my_cart" />
 
     <item
-        android:id="@+id/paymentsFragment"
+        android:id="@+id/paymentFragment"
         android:icon="@drawable/ic_wallet"
         android:title="@string/payments" />
 
