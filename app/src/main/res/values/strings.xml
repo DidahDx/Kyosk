@@ -5,4 +5,5 @@
     <string name="my_cart">MY CART</string>
     <string name="payments">PAYMENT</string>
     <string name="more">MORE</string>
+    <string name="product_image">Product Image</string>
 </resources>
