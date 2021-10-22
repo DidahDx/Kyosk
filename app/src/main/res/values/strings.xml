@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Kyosk</string>
-    <string name="home">HOME</string>
-    <string name="categories">CATEGORIES</string>
-    <string name="my_cart">MY CART</string>
-    <string name="payments">PAYMENT</string>
-    <string name="more">MORE</string>
+    <string name="home">Home</string>
+    <string name="categories">Categories</string>
+    <string name="my_cart">My cart</string>
+    <string name="payments">Payment</string>
+    <string name="more">More</string>
     <string name="product_image">Product Image</string>
+    <string name="view_all">View all</string>
 </resources>
