@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Kyosk" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Kyosk" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryVariant">@color/color_primary_variant</item>
+        <item name="colorPrimary">@color/philippine_yellow</item>
+        <item name="colorPrimaryVariant">@color/liberty</item>
         <item name="colorOnPrimary">@color/white</item>
 
         <!-- Secondary brand color. -->

@@ -7,6 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="color_primary">#F7CC00</color>
-    <color name="color_primary_variant">#4060AF</color>
+    <color name="philippine_yellow">#F7CC00</color>
+    <color name="liberty">#4060AF</color>
+    <color name="lotion">#FBFBFB</color>
+    <color name="verse_green">#15920C</color>
+    <color name="cultured">#F7F7F8</color>
+    <color name="davy_grey">#5B5B5B</color>
+
 </resources>
