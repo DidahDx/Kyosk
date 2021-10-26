@@ -3,6 +3,7 @@ package com.github.didahdx.kyosk.data.local.dao
 import androidx.room.*
 import com.github.didahdx.kyosk.data.local.entities.CategoryEntity
 import com.github.didahdx.kyosk.data.local.entities.CategoryProductsRelation
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 
 /**
@@ -12,10 +13,10 @@ import io.reactivex.rxjava3.core.Observable
 interface CategoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(categoryEntity: CategoryEntity)
+    fun insert(categoryEntity: CategoryEntity): Completable
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(categoryEntity: List<CategoryEntity>)
+    fun insert(categoryEntity: List<CategoryEntity>): Completable
 
     @Transaction
     @Query("SELECT * FROM CategoryEntity WHERE code=(case when :code='All' then code else :code end)  GROUP BY description ORDER BY description")
