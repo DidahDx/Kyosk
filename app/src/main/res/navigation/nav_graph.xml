@@ -9,12 +9,27 @@
         android:id="@+id/homeFragment"
         android:name="com.github.didahdx.kyosk.ui.home.HomeFragment"
         android:label="@string/home"
-        tools:layout="@layout/home_fragment" />
+        tools:layout="@layout/home_fragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/categoriesFragment"
-        android:name="com.github.didahdx.kyosk.ui.catergories.CategoriesFragment"
+        android:id="@+id/categoryFragment"
+        android:name="com.github.didahdx.kyosk.ui.catergory.CategoryFragment"
         android:label="@string/categories"
-        tools:layout="@layout/categories_fragment" />
+        tools:layout="@layout/category_fragment">
+        <argument
+            android:name="CategoryTitle"
+            app:argType="com.github.didahdx.kyosk.data.local.entities.CategoryEntity" />
+        <action
+            android:id="@+id/action_categoryFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+
+    </fragment>
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.github.didahdx.kyosk.ui.more.MoreFragment"
@@ -30,4 +45,23 @@
         android:name="com.github.didahdx.kyosk.ui.payment.PaymentFragment"
         android:label="@string/payments"
         tools:layout="@layout/payment_fragment" />
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.github.didahdx.kyosk.ui.product_details.ProductDetailFragment"
+        android:label="product_detail_fragment"
+        tools:layout="@layout/product_detail_fragment" />
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="com.github.didahdx.kyosk.ui.categories.CategoriesFragment"
+        android:label="categories_fragment"
+        tools:layout="@layout/categories_fragment" >
+        <argument
+            android:name="productId"
+            app:argType="integer"
+            android:defaultValue="0"/>
+        <action
+            android:id="@+id/action_categoriesFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+
+    </fragment>
 </navigation>
