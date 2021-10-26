@@ -2,6 +2,7 @@ package com.github.didahdx.kyosk.data.local.dao
 
 import androidx.room.*
 import com.github.didahdx.kyosk.data.local.entities.ProductEntity
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 
 /**
@@ -11,10 +12,10 @@ import io.reactivex.rxjava3.core.Observable
 interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(productEntity: ProductEntity)
+    fun insert(productEntity: ProductEntity): Completable
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(productEntity: List<ProductEntity>)
+    fun insert(productEntity: List<ProductEntity>): Completable
 
     @Transaction
     @Query("SELECT * FROM ProductEntity")
