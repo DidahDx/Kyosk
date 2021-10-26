@@ -66,7 +66,6 @@ class CategoryRepository @Inject constructor(
                 .observeOn(Schedulers.io())
                 .map { productList ->
                     val list = ArrayList<RecyclerViewItems>()
-//                    list.add(categoryTitle)
                     list.addAll(productList.map { it.mapToProductItem() })
                     list.toList()
                 }

@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.github.didahdx.kyosk.App
@@ -17,14 +15,9 @@ import com.github.didahdx.kyosk.databinding.ProductDetailFragmentBinding
 import com.github.didahdx.kyosk.ui.BaseFragment
 import com.github.didahdx.kyosk.ui.extensions.snackBar
 import com.github.didahdx.kyosk.ui.home.HomeFragment
-import com.github.didahdx.kyosk.ui.home.HomeViewModel
-import javax.inject.Inject
 
 class ProductDetailFragment : BaseFragment() {
 
-//    @Inject
-//    lateinit var viewModel: ViewModelProvider.Factory
-    // dagger ViewModel
     private val productDetailViewModel: ProductDetailViewModel by viewModels()
 
     private var _binding: ProductDetailFragmentBinding? = null
@@ -35,8 +28,7 @@ class ProductDetailFragment : BaseFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (requireNotNull(this.activity).application as App).appComponent.inject(this)
-//        productDetailViewModel = ViewModelProvider(this,viewModel).get(ProductDetailViewModel::class.java)
-    }
+ }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

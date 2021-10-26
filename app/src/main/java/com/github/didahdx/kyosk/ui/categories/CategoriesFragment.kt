@@ -26,18 +26,15 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class CategoriesFragment : BaseFragment() {
-//    @Inject
-//    lateinit var viewModel: ViewModelProvider.Factory
+
     private var _binding: CategoriesFragmentBinding? = null
     private val binding get() = _binding!!
     private val categoriesViewModel: CategoriesViewModel by viewModels()
-//    private lateinit var categoriesViewModel: CategoriesViewModel
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (requireNotNull(this.activity).application as App).appComponent.inject(this)
-//        categoriesViewModel = ViewModelProvider(this,viewModel).get(CategoriesViewModel::class.java)
-    }
+  }
 
 
     override fun onCreateView(
