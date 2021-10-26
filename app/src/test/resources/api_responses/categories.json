@@ -1,0 +1,26 @@
+[
+  {
+    "categories": [
+      {
+        "code": "INV4OTC",
+        "description": "Soap"
+      },
+      {
+        "code": "INV41TC",
+        "description": "Cooking Oil"
+      },
+      {
+        "code": "INV42TC",
+        "description": "Maize Flour"
+      },
+      {
+        "code": "INV43TC",
+        "description": "Wheat Flour"
+      },
+      {
+        "code": "INV45TC",
+        "description": "Rice"
+      }
+    ]
+  }
+]
