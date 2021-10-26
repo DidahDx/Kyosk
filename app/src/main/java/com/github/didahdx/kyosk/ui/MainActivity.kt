@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as App).appComponent.inject(this)
+        setTheme(R.style.Theme_Kyosk)
         super.onCreate(savedInstanceState)
        val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
