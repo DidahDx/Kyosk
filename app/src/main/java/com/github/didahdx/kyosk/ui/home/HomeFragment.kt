@@ -16,6 +16,7 @@ import com.github.didahdx.kyosk.data.mapper.mapToCategoryEntity
 import com.github.didahdx.kyosk.databinding.HomeFragmentBinding
 import com.github.didahdx.kyosk.ui.BaseFragment
 import com.github.didahdx.kyosk.ui.catergory.CategoryFragment
+import com.github.didahdx.kyosk.ui.extensions.hide
 import com.github.didahdx.kyosk.ui.extensions.navigateSafe
 import com.github.didahdx.kyosk.ui.extensions.snackBar
 import timber.log.Timber
@@ -54,25 +55,25 @@ class HomeFragment : BaseFragment() {
         recyclerViewAdapter.itemClickListener = { view, item, position ->
             when (item) {
                 is RecyclerViewItems.CategoriesChipList -> {
-                    Timber.e(" 1 All $view $item")
+                   //not used
                 }
                 is RecyclerViewItems.CategoryTitle -> {
-                    Timber.e("2 Cat Title $view  $item")
+
                     val bundle= bundleOf(CategoryFragment.categoryTitle to item.mapToCategoryEntity())
                     this.findNavController()
                         .navigateSafe(R.id.action_homeFragment_to_categoryFragment,bundle)
                 }
                 is RecyclerViewItems.ProductItemList -> {
-                    Timber.e(" 3 product List $view  $item")
+                  //not used
                 }
                 is RecyclerViewItems.ProductItem -> {
-                    Timber.e("4 product $view  $item")
+                    //individual product clicked
                     val bundle= bundleOf(productId to item.id)
                     this.findNavController()
                         .navigateSafe(R.id.action_homeFragment_to_productDetailFragment,bundle)
                 }
                 is RecyclerViewItems.CategoryChip -> {
-                    Timber.e("5 Cat Chip $view  $item")
+                    //category chip clicked
                     homeViewModel.setFilter(item.code)
                 }
             }
@@ -84,8 +85,8 @@ class HomeFragment : BaseFragment() {
                         Timber.e("Loading")
                     }
                     is Resources.Success -> {
+                        binding.progressBar.hide()
                         recyclerViewAdapter.submitList(list.data)
-//                        recyclerViewAdapter
                         Timber.d("${list.data?.toString()}")
                     }
                     is Resources.Error -> {

@@ -17,6 +17,7 @@ import com.github.didahdx.kyosk.data.local.entities.CategoryEntity
 import com.github.didahdx.kyosk.data.mapper.mapToCategoryTitle
 import com.github.didahdx.kyosk.databinding.CategoryFragmentBinding
 import com.github.didahdx.kyosk.ui.BaseFragment
+import com.github.didahdx.kyosk.ui.extensions.hide
 import com.github.didahdx.kyosk.ui.extensions.navigateSafe
 import com.github.didahdx.kyosk.ui.extensions.snackBar
 import com.github.didahdx.kyosk.ui.home.HomeFragment
@@ -51,7 +52,6 @@ class CategoryFragment : BaseFragment() {
         val gridLayoutManager = GridLayoutManager(binding.root.context, 2)
         gridLayoutManager.orientation = LinearLayoutManager.VERTICAL
         binding.rvCategories.apply {
-//            layoutManager = LinearLayoutManager(binding.root.context)
             layoutManager = gridLayoutManager
             adapter = recyclerViewAdapter
         }
@@ -87,6 +87,7 @@ class CategoryFragment : BaseFragment() {
                     //loading
                 }
                 is Resources.Success -> {
+                    binding.progressBar.hide()
                     recyclerViewAdapter.submitList(item.data)
                 }
             }
