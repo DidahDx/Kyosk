@@ -29,20 +29,17 @@ class CategoryFragment : BaseFragment() {
         const val categoryTitle = "CategoryTitle"
     }
 
-//    @Inject
-//    lateinit var viewModel: ViewModelProvider.Factory
 
     private val categoryViewModel: CategoryViewModel by viewModels()
     private var _binding: CategoryFragmentBinding? = null
     private val binding get() = _binding!!
-//    private lateinit var categoryViewModel: CategoryViewModel
+
     var categoryTitle: CategoryEntity? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (requireNotNull(this.activity).application as App).appComponent.inject(this)
-//        categoryViewModel = ViewModelProvider(this, viewModel).get(CategoryViewModel::class.java)
-    }
+ }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

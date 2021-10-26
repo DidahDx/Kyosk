@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.github.didahdx.kyosk.R
+import com.github.didahdx.kyosk.ui.BaseFragment
 
-class PaymentFragment : Fragment() {
+class PaymentFragment : BaseFragment() {
 
 
     override fun onCreateView(
