@@ -1,4 +1,4 @@
-package com.github.didahdx.kyosk;
+package com.github.didahdx.kyosk
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.squareup.moshi.Moshi
@@ -8,6 +8,7 @@ import okhttp3.mockwebserver.MockWebServer
 import okio.buffer
 import okio.source
 import org.junit.*
+import org.junit.Assert.assertEquals
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import retrofit2.Retrofit
@@ -57,4 +58,8 @@ open class ApiServiceAbstract<T> {
         server.shutdown()
     }
 
+    @Test
+    fun sampleTest(){
+        assertEquals("test","test")
+    }
 }
