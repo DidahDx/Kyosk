@@ -7,4 +7,6 @@
     <string name="more">More</string>
     <string name="product_image">Product Image</string>
     <string name="view_all">View all</string>
+    <string name="currency_kes">Kes %1$d</string>
+    <string name="back_button">Back button</string>
 </resources>

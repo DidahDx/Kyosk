@@ -3,8 +3,8 @@
     <style name="Theme.Kyosk" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/philippine_yellow</item>
-        <item name="colorPrimaryVariant">@color/liberty</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/davy_grey</item>
+        <item name="colorOnPrimary">@color/black</item>
 
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -15,6 +15,20 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="chipStyle">@style/Widget.App.Chip</item>
+    </style>
+
+    <style name="Widget.App.Chip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipIconTint">@color/cultured</item>
+        <item name="chipBackgroundColor">@drawable/category_selection_chip</item>
+        <item name="fontFamily">@font/sf_pro_regular</item>
+        <item name="android:fontFamily">@font/sf_pro_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@drawable/category_selection_chip_text_color</item>
+        <item name="rippleColor">@color/liberty</item>
+        <item name="singleSelection">true</item>
+        <item name="selectionRequired">true</item>
+        <item name="checkedIconVisible">false</item>
     </style>
 
     <style name="BottomNav" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
