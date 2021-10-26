@@ -1,0 +1,602 @@
+[
+  {
+    "id": 1,
+    "title": "Jamaa Bar Soap 1kg",
+    "price": 215,
+    "description": "Jamaa Bar Soap 1kg",
+    "category": "INV4OTC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Soap_Jamaa_bar_1kg.png",
+    "rating": {
+      "rate": 3.9,
+      "quantity": 200
+    }
+  },
+  {
+    "id": 2,
+    "title": "Kibuyu Bar Soap 1kg",
+    "price": 159,
+    "description": "Kibuyu Bar Soap 1kg",
+    "category": "INV4OTC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Soap_Kibuyu_bar_1kg.png.png",
+    "rating": {
+      "rate": 3.9,
+      "quantity": 210
+    }
+  },
+  {
+    "id": 3,
+    "title": "Sunlight Bar Soap 160g",
+    "price": 220,
+    "description": "Sunlight Bar Soap 160g",
+    "category": "INV4OTC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Soap_Sunlight_160g.png",
+    "rating": {
+      "rate": 3.9,
+      "quantity": 180
+    }
+  },
+  {
+    "id": 4,
+    "title": "Sunlight 1kg Powder",
+    "price": 190,
+    "description": "Sunlight 1kg Powder",
+    "category": "INV4OTC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Soap_Sunlight_1kg_powder.png.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 112
+    }
+  },
+  {
+    "id": 5,
+    "title": "Sunlight 2kg Powder",
+    "price": 319,
+    "description": "Sunlight 2kg Powder",
+    "category": "INV4OTC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Soap_Sunlight_2kg_powder.png",
+    "rating": {
+      "rate": 4.5,
+      "quantity": 410
+    }
+  },
+  {
+    "id": 6,
+    "title": "White Wash Bar Soap 200g",
+    "price": 68,
+    "description": "White Wash Bar Soap 200g",
+    "category": "INV4OTC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Soap_WhiteWash_200g.png",
+    "rating": {
+      "rate": 3,
+      "quantity": 89
+    }
+  },
+  {
+    "id": 7,
+    "title": "White Wash Bar Soap 1kg",
+    "price": 234,
+    "description": "White Wash Bar Soap 1kg",
+    "category": "INV4OTC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Soap_WhiteWash_bar_1kg.png.png",
+    "rating": {
+      "rate": 3,
+      "quantity": 89
+    }
+  },
+  {
+    "id": 8,
+    "title": "Zenta Bar Soap 1kg",
+    "price": 234,
+    "description": "Zenta Bar Soap 1kg",
+    "category": "INV4OTC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Soap_Zenta_bar_1kg.png.png",
+    "rating": {
+      "rate": 3,
+      "quantity": 89
+    }
+  },
+  {
+    "id": 9,
+    "title": "Avena Cooking Oil 10ltr",
+    "price": 460,
+    "description": "Avena Cooking Oil 10ltr",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Avena_10ltr.png",
+    "rating": {
+      "rate": 4.3,
+      "quantity": 564
+    }
+  },
+  {
+    "id": 10,
+    "title": "Avena Cooking Oil 1ltr",
+    "price": 748,
+    "description": "Avena Cooking Oil 1ltr",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Avena_1ltr.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 1928
+    }
+  },
+  {
+    "id": 11,
+    "title": "Elianto Cooking Oil 2ltr",
+    "price": 250,
+    "description": "Elianto Cooking Oil 2ltr",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Elianto_2ltr.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 766
+    }
+  },
+  {
+    "id": 12,
+    "title": "Fresh Fri 10ltr",
+    "price": 235,
+    "description": "Fresh Fri 10ltr",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Fresh_Fri_10ltr.png",
+    "rating": {
+      "rate": 2.5,
+      "quantity": 410
+    }
+  },
+  {
+    "id": 13,
+    "title": "Fresh Fri Cooking Oil 2ltr",
+    "price": 4141,
+    "description": "Fresh Fri Cooking Oil 2ltr",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Fresh_Fri_2ltr.png",
+    "rating": {
+      "rate": 2.5,
+      "quantity": 410
+    }
+  },
+  {
+    "id": 14,
+    "title": "Golden Fri Cooking Oil 2ltr",
+    "price": 3774,
+    "description": "Golden Fri Cooking Oil 2ltr",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Golden_Fri_2ltr.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 45
+    }
+  },
+  {
+    "id": 15,
+    "title": "Halisi Cooking Oil 10ltr",
+    "price": 3774,
+    "description": "Halisi Cooking Oil 10ltr",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Halisi_10ltr.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 45
+    }
+  },
+  {
+    "id": 16,
+    "title": "Kasuku Cooking Oil 1kg",
+    "price": 3774,
+    "description": "Kasuku Cooking Oil 1kg",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Kasuku_1kg.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 45
+    }
+  },
+  {
+    "id": 17,
+    "title": "Nyota Cooking Oil 2ltr",
+    "price": 3774,
+    "description": "Nyota Cooking Oil 2ltr",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Nyota_20ltr.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 45
+    }
+  },
+  {
+    "id": 18,
+    "title": "Pika Cooking Oil 1ltr",
+    "price": 3774,
+    "description": "Pika Cooking Oil 1ltr",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Pika_1ltr.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 45
+    }
+  },
+  {
+    "id": 19,
+    "title": "Pika Cooking Oil 2kg",
+    "price": 3774,
+    "description": "Pika Cooking Oil 2kg",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Pika_2kg.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 45
+    }
+  },
+  {
+    "id": 20,
+    "title": "Rina Cooking Oil 2ltr",
+    "price": 3774,
+    "description": "Rina Cooking Oil 2ltr",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Rina_2ltr.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 45
+    }
+  },
+  {
+    "id": 21,
+    "title": "Salit Cooking Oil 20kg",
+    "price": 3774,
+    "description": "Pika Cooking Oil 2kg",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Salit_20kg.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 45
+    }
+  },
+  {
+    "id": 22,
+    "title": "Samli Cooking Oil 1okg Carton",
+    "price": 3774,
+    "description": "Samli Cooking Oil 1okg Carton",
+    "category": "INV41TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Oil_Samli_10kg%20Carton.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 45
+    }
+  },
+  {
+    "id": 23,
+    "title": "Jogoo Maize Meal 5kg Bag",
+    "price": 90,
+    "description": "Jogoo Maize Meal 5kg Bag",
+    "category": "INV42TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Ugali_Jogoo_5kg.png",
+    "rating": {
+      "rate": 4.5,
+      "quantity": 829
+    }
+  },
+  {
+    "id": 24,
+    "title": "Pembe Maize Meal 2kg",
+    "price": 98,
+    "description": "Pembe Maize Meal 2kg",
+    "category": "INV42TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Ugali_pembe_2kg.png",
+    "rating": {
+      "rate": 3,
+      "quantity": 583
+    }
+  },
+  {
+    "id": 25,
+    "title": "210 Maize Meal 5kg",
+    "price": 95,
+    "description": "210 Maize Meal 5kg",
+    "category": "INV42TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/ugali_210_2kg.png",
+    "rating": {
+      "rate": 4,
+      "quantity": 78
+    }
+  },
+  {
+    "id": 26,
+    "title": "Amiaze Maize Meal 2kg",
+    "price": 128,
+    "description": "Amiaze Maize Meal 2kg",
+    "category": "INV42TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/ugali_amaize_2kg.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 2543
+    }
+  },
+  {
+    "id": 27,
+    "title": "Cosmo Maize Meal 1kg",
+    "price": 53,
+    "description": "Cosmo Maize Meal 1kg",
+    "category": "INV42TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/ugali_cosmo_2kg.png",
+    "rating": {
+      "rate": 3.5,
+      "quantity": 410
+    }
+  },
+  {
+    "id": 28,
+    "title": "Kifaru Maize Meal 2kg",
+    "price": 78,
+    "description": "Kifaru Maize Meal 2kg",
+    "category": "INV42TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/ugali_kifaru_2kg.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 45
+    }
+  },
+  {
+    "id": 29,
+    "title": "Oryx Maize Meal 2kg - 1 bale",
+    "price": 100,
+    "description": "Oryx Maize Meal 2kg - 1 bale",
+    "category": "INV42TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/ugali_oryx_2kg.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 300
+    }
+  },
+  {
+    "id": 30,
+    "title": "Shujaa Maize Meal 2kg",
+    "price": 116,
+    "description": "Shujaa Maize Meal 2kg",
+    "category": "INV42TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/ugali_shujaa_2kg.png",
+    "rating": {
+      "rate": 4,
+      "quantity": 259
+    }
+  },
+  {
+    "id": 31,
+    "title": "Soko Maize Meal 2kg",
+    "price": 98,
+    "description": "Soko Maize Meal 2kg",
+    "category": "INV42TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/ugali_soko_2kg.png",
+    "rating": {
+      "rate": 4,
+      "quantity": 259
+    }
+  },
+  {
+    "id": 32,
+    "title": "Exe All Purpose Flour 2kg",
+    "price": 150,
+    "description": "Exe All Purpose Flour 2kg",
+    "category": "INV43TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Exe_BF_2kg.png",
+    "rating": {
+      "rate": 4.5,
+      "quantity": 333
+    }
+  },
+  {
+    "id": 33,
+    "title": "Dola All Purpose Wheat Flour 2kg",
+    "price": 123,
+    "description": "Dola All Purpose Wheat Flour 2kg",
+    "category": "INV43TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Dola_BF_2kg.png",
+    "rating": {
+      "rate": 3,
+      "quantity": 221
+    }
+  },
+  {
+    "id": 34,
+    "title": "Exe Chapati 2kg",
+    "price": 142,
+    "description": "Exe Chapati 2kg",
+    "category": "INV43TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Exe_BF_2kg.png",
+    "rating": {
+      "rate": 4,
+      "quantity": 67
+    }
+  },
+  {
+    "id": 35,
+    "title": "210 Wheat Flour 2kg",
+    "price": 150,
+    "description": "210 Wheat Flour 2kg",
+    "category": "INV43TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/210_BF_2kg.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 982
+    }
+  },
+  {
+    "id": 36,
+    "title": "Ajab Wheat Flour 2kg",
+    "price": 145,
+    "description": "Ajab Wheat Flour 2kg",
+    "category": "INV43TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Ajab_BF_2kg.png",
+    "rating": {
+      "rate": 3.5,
+      "quantity": 5476
+    }
+  },
+  {
+    "id": 37,
+    "title": "Kirafu Wheat Flour 2kg",
+    "price": 147,
+    "description": "Kirafu Wheat Flour 2kg",
+    "category": "INV43TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Kifaru_Ngano_BF_2kg.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 77
+    }
+  },
+  {
+    "id": 38,
+    "title": "Ndovu Wheat Flour 2kg",
+    "price": 145,
+    "description": "Ndovu Wheat Flour 2kg",
+    "category": "INV43TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Ndovu_bf_2kg.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 234
+    }
+  },
+  {
+    "id": 39,
+    "title": "Pembe Wheat Flour 2kg",
+    "price": 123,
+    "description": "Pembe Wheat Flour 2kg",
+    "category": "INV43TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Pembe_BF_2kg.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 1
+    }
+  },
+  {
+    "id": 40,
+    "title": "Soko Wheat Flour 2kg",
+    "price": 142,
+    "description": "Soko Wheat Flour 2kg",
+    "category": "INV43TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/Soko_bf_2kg.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 23
+    }
+  },
+  {
+    "id": 41,
+    "title": "Pearl Pishori Rice 2kg",
+    "price": 440,
+    "description": "Pearl Pishori Rice 2kg",
+    "category": "INV45TC",
+    "image": "https://drive.google.com/file/d/1rZtLafrLyVDBjo00Bdgsz3364ru606hl/view",
+    "rating": {
+      "rate": 4.5,
+      "quantity": 56
+    }
+  },
+  {
+    "id": 42,
+    "title": "Daawat Long Grain Rice 2kg",
+    "price": 288,
+    "description": "Daawat Long Grain Rice 2kg",
+    "category": "INV45TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/0FY6.png",
+    "rating": {
+      "rate": 3,
+      "quantity": 87
+    }
+  },
+  {
+    "id": 43,
+    "title": "Pearl Pishori Rice 1kg",
+    "price": 226,
+    "description": "Pearl Pishori Rice 1kg",
+    "category": "INV45TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/0FY6.png",
+    "rating": {
+      "rate": 4,
+      "quantity": 22
+    }
+  },
+  {
+    "id": 44,
+    "title": "Daawat Long Grain Rice 1kg",
+    "price": 144,
+    "description": "Daawat Long Grain Rice 1kg",
+    "category": "INV45TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/0FY6.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 12
+    }
+  },
+  {
+    "id": 45,
+    "title": "Daawat Biryani Rice 2kg",
+    "price": 378,
+    "description": "Daawat Biryani Rice 2kg",
+    "category": "INV45TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/0FY6.png",
+    "rating": {
+      "rate": 3.5,
+      "quantity": 443
+    }
+  },
+  {
+    "id": 46,
+    "title": "Daawat Deli Basmati Rice 2kg",
+    "price": 486,
+    "description": "Daawat Deli Basmati Rice 2kg",
+    "category": "INV45TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/0FY6.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 9
+    }
+  },
+  {
+    "id": 47,
+    "title": "Daawat Brown Rice 1kg",
+    "price": 257,
+    "description": "Daawat Brown Rice 1kg",
+    "category": "INV45TC",
+    "image": "https://storage.googleapis.com/kyosk_candidate_images/images/0FY6.png",
+    "rating": {
+      "rate": 5,
+      "quantity": 1
+    }
+  },
+  {
+    "id": 48,
+    "title": "Daawat Parboiled Rice 2kg",
+    "price": 378,
+    "description": "Daawat Parboiled Rice 2kg",
+    "category": "INV45TC",
+    "image": "https://drive.google.com/file/d/1rZtLafrLyVDBjo00Bdgsz3364ru606hl/view",
+    "rating": {
+      "rate": 5,
+      "quantity": 0
+    }
+  },
+  {
+    "id": 49,
+    "title": "Pearl Pishori Rice 1kg",
+    "price": 226,
+    "description": "Pearl Pishori Rice 2kg",
+    "category": "INV45TC",
+    "image": "https://drive.google.com/file/d/1rZtLafrLyVDBjo00Bdgsz3364ru606hl/view",
+    "rating": {
+      "rate": 5,
+      "quantity": 67
+    }
+  },
+  {
+    "id": 50,
+    "title": "Cil Pishori Aromatic Rice 2kg",
+    "price": 436,
+    "description": "Cil Pishori Aromatic Rice 2kg",
+    "category": "INV45TC",
+    "image": "https://drive.google.com/file/d/1rZtLafrLyVDBjo00Bdgsz3364ru606hl/view",
+    "rating": {
+      "rate": 5,
+      "quantity": 98
+    }
+  }
+]
