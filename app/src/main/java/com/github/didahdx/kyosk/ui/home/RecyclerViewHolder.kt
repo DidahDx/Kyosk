@@ -58,7 +58,6 @@ sealed class RecyclerViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
 
     class ProductsViewHolderList(private val binding: ItemHorizontalViewBinding) :
         RecyclerViewHolder(binding), NestedRecyclerViewViewHolder {
-//        private val recyclerViewAdapter = RecyclerViewAdapter()
         lateinit var productItemList: RecyclerViewItems.ProductItemList
         init{
             binding.rvCategory.apply {
@@ -74,8 +73,6 @@ sealed class RecyclerViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
                 ( rvCategory.adapter as  RecyclerViewAdapter).itemClickListener = itemClickListener
                 ( rvCategory.adapter as  RecyclerViewAdapter).submitList(productItemList.productList)
             }
-//            recyclerViewAdapter.itemClickListener = itemClickListener
-//            recyclerViewAdapter.submitList(productItemList.productList)
         }
 
         override fun getId() = productItemList.productList.first().category

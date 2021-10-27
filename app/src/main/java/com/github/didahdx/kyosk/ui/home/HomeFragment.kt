@@ -29,15 +29,15 @@ class HomeFragment : BaseFragment() {
     private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val recyclerViewAdapter by lazy {  RecyclerViewAdapter()}
 
-    companion object{
-        const val productId="productId"
+    companion object {
+        const val productId = "productId"
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireNotNull(this.activity).application as App).appComponent.inject(this)
+        val appComp = (requireNotNull(this.activity).application as App).appComponent
+        appComp.inject(this)
     }
 
     override fun onCreateView(
@@ -45,32 +45,33 @@ class HomeFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = HomeFragmentBinding.inflate(inflater, container, false)
-
+       val recyclerViewAdapter = RecyclerViewAdapter()
         binding.mainRecyclerview.apply {
             layoutManager = LinearLayoutManager(binding.root.context)
             adapter = recyclerViewAdapter
         }
 
 
-        recyclerViewAdapter.itemClickListener = { view, item, position ->
+        recyclerViewAdapter.itemClickListener = { _, item, _ ->
             when (item) {
                 is RecyclerViewItems.CategoriesChipList -> {
-                   //not used
+                    //not used
                 }
                 is RecyclerViewItems.CategoryTitle -> {
 
-                    val bundle= bundleOf(CategoryFragment.categoryTitle to item.mapToCategoryEntity())
+                    val bundle =
+                        bundleOf(CategoryFragment.categoryTitle to item.mapToCategoryEntity())
                     this.findNavController()
-                        .navigateSafe(R.id.action_homeFragment_to_categoryFragment,bundle)
+                        .navigateSafe(R.id.action_homeFragment_to_categoryFragment, bundle)
                 }
                 is RecyclerViewItems.ProductItemList -> {
-                  //not used
+                    //not used
                 }
                 is RecyclerViewItems.ProductItem -> {
                     //individual product clicked
-                    val bundle= bundleOf(productId to item.id)
+                    val bundle = bundleOf(productId to item.id)
                     this.findNavController()
-                        .navigateSafe(R.id.action_homeFragment_to_productDetailFragment,bundle)
+                        .navigateSafe(R.id.action_homeFragment_to_productDetailFragment, bundle)
                 }
                 is RecyclerViewItems.CategoryChip -> {
                     //category chip clicked
@@ -80,20 +81,20 @@ class HomeFragment : BaseFragment() {
         }
 
         homeViewModel.allItems.observe(viewLifecycleOwner, { list ->
-                when (list) {
-                    is Resources.Loading -> {
-                        Timber.e("Loading")
-                    }
-                    is Resources.Success -> {
-                        binding.progressBar.hide()
-                        recyclerViewAdapter.submitList(list.data)
-                        Timber.d("${list.data?.toString()}")
-                    }
-                    is Resources.Error -> {
-                        list.message?.let { binding.mainRecyclerview.snackBar(it) }
-                    }
+            when (list) {
+                is Resources.Loading -> {
+                    Timber.e("Loading")
                 }
-            })
+                is Resources.Success -> {
+                    binding.progressBar.hide()
+                    recyclerViewAdapter.submitList(list.data)
+                    Timber.d("${list.data?.toString()}")
+                }
+                is Resources.Error -> {
+                    list.message?.let { binding.mainRecyclerview.snackBar(it) }
+                }
+            }
+        })
 
         return binding.root
     }

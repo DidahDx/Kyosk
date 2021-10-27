@@ -53,14 +53,14 @@ class ShopRepositoryImpl @Inject constructor(
                         category.mapToCategoryEntity()
                     }
                     Timber.e("$categories")
-                    categoryDao.insert(categories)
+                    categoryDao.insert(categories).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe()
 
                     //get all products and save to database
                     val products = productsItemsList.map { productItemDto ->
                         productItemDto.mapToProductEntity()
                     }
                     Timber.e("$products")
-                    productDao.insert(products)
+                    productDao.insert(products).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe()
 
                 }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

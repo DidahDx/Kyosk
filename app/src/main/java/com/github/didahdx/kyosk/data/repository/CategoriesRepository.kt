@@ -46,7 +46,7 @@ class CategoriesRepository @Inject constructor(
                 .switchMap { categoryList ->
                     val categories =
                         categoryList.first().categories.map { category -> category.mapToCategoryEntity() }
-                    categoryDao.insert(categories)
+                    categoryDao.insert(categories).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe()
                     return@switchMap categoryDao.getAllCategories().subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                 }.map { category ->

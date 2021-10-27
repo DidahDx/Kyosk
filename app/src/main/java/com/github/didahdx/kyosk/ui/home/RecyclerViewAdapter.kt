@@ -88,7 +88,6 @@ class RecyclerViewAdapter :
     }
 }
 
-
 class RecyclerViewDiffUtil : DiffUtil.ItemCallback<RecyclerViewItems>() {
     override fun areItemsTheSame(oldItem: RecyclerViewItems, newItem: RecyclerViewItems): Boolean {
         return oldItem == newItem
