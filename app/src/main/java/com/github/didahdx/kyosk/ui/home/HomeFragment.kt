@@ -29,6 +29,7 @@ class HomeFragment : BaseFragment() {
     private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
 
+    private val recyclerViewAdapter by lazy {  RecyclerViewAdapter()}
 
     companion object{
         const val productId="productId"
@@ -45,7 +46,6 @@ class HomeFragment : BaseFragment() {
     ): View {
         _binding = HomeFragmentBinding.inflate(inflater, container, false)
 
-        val recyclerViewAdapter = RecyclerViewAdapter()
         binding.mainRecyclerview.apply {
             layoutManager = LinearLayoutManager(binding.root.context)
             adapter = recyclerViewAdapter
