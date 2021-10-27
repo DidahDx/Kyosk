@@ -7,6 +7,7 @@ import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
 import com.github.didahdx.kyosk.R
 import com.github.didahdx.kyosk.databinding.*
+import com.github.didahdx.kyosk.ui.staterestorationadapter.NestedRecyclerViewViewHolder
 import com.google.android.material.chip.Chip
 
 /**
@@ -56,17 +57,28 @@ sealed class RecyclerViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
     }
 
     class ProductsViewHolderList(private val binding: ItemHorizontalViewBinding) :
-        RecyclerViewHolder(binding) {
-        private val recyclerViewAdapter = RecyclerViewAdapter()
-        fun bind(productItemList: RecyclerViewItems.ProductItemList) {
+        RecyclerViewHolder(binding), NestedRecyclerViewViewHolder {
+        lateinit var productItemList: RecyclerViewItems.ProductItemList
+        init{
             binding.rvCategory.apply {
                 layoutManager =
                     LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)
-                adapter = recyclerViewAdapter
+                adapter = RecyclerViewAdapter()
             }
-            recyclerViewAdapter.itemClickListener = itemClickListener
-            recyclerViewAdapter.submitList(productItemList.productList)
         }
+
+        fun bind(productItemList: RecyclerViewItems.ProductItemList) {
+            this.productItemList= productItemList
+            with(binding) {
+                ( rvCategory.adapter as  RecyclerViewAdapter).itemClickListener = itemClickListener
+                ( rvCategory.adapter as  RecyclerViewAdapter).submitList(productItemList.productList)
+            }
+        }
+
+        override fun getId() = productItemList.productList.first().category
+
+
+        override fun getLayoutManager() = binding.rvCategory.layoutManager
     }
 
     class ProductItemViewHolder(private val binding: ItemProductBinding) :

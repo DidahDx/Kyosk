@@ -45,6 +45,7 @@ class HomeViewModel @AssistedInject constructor(
             }
             .subscribe({
                 allItems.value = it
+                Timber.e("$it")
             }, {
                 Timber.e(it)
                 allItems.value = Resources.Error<List<RecyclerViewItems>>("Something went wrong")

@@ -36,7 +36,7 @@ class CategoryRepository @Inject constructor(
                 .observeOn(Schedulers.io())
                 .switchMap { productList ->
                     val product = productList.map { it.mapToProductEntity() }
-                    productDao.insert(product)
+                    productDao.insert(product).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe()
                     return@switchMap productDao.getAllProductsByCategory(category = categoryTitle.code)
                         .subscribeOn(Schedulers.io())
                         .observeOn(Schedulers.io())

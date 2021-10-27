@@ -27,7 +27,8 @@ class ProductDetailFragment : BaseFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireNotNull(this.activity).application as App).appComponent.inject(this)
+        val appComp = (requireNotNull(this.activity).application as App).appComponent
+        appComp.inject(this)
  }
 
     override fun onCreateView(

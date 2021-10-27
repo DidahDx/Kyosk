@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import com.github.didahdx.kyosk.R
 import com.github.didahdx.kyosk.databinding.*
+import com.github.didahdx.kyosk.ui.staterestorationadapter.NestedRecyclerViewStateRecoverAdapter
 
 /**
  * Created by Daniel Didah on 10/24/21.
  */
 class RecyclerViewAdapter :
-    ListAdapter<RecyclerViewItems, RecyclerViewHolder>(RecyclerViewDiffUtil()) {
+    NestedRecyclerViewStateRecoverAdapter<RecyclerViewItems, RecyclerViewHolder>(RecyclerViewDiffUtil()) {
     var itemClickListener: ((view: View, item: RecyclerViewItems, position: Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
@@ -74,6 +74,7 @@ class RecyclerViewAdapter :
             is RecyclerViewHolder.CategoryChipViewHolder -> holder.bind(getItem(position) as RecyclerViewItems.CategoryChip)
             is RecyclerViewHolder.CategoryTitleViewHolder -> holder.bind(getItem(position) as RecyclerViewItems.CategoryTitle)
         }
+        super.onBindViewHolder(holder, position)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -87,7 +88,6 @@ class RecyclerViewAdapter :
     }
 }
 
-
 class RecyclerViewDiffUtil : DiffUtil.ItemCallback<RecyclerViewItems>() {
     override fun areItemsTheSame(oldItem: RecyclerViewItems, newItem: RecyclerViewItems): Boolean {
         return oldItem == newItem
@@ -100,7 +100,4 @@ class RecyclerViewDiffUtil : DiffUtil.ItemCallback<RecyclerViewItems>() {
         return oldItem == newItem
     }
 
-    override fun getChangePayload(oldItem: RecyclerViewItems, newItem: RecyclerViewItems): Any? {
-        return super.getChangePayload(oldItem, newItem)
-    }
 }
