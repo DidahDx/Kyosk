@@ -12,7 +12,9 @@ import com.github.didahdx.kyosk.App
 import com.github.didahdx.kyosk.R
 import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.databinding.ProductDetailFragmentBinding
+import com.github.didahdx.kyosk.di.FragmentScope
 import com.github.didahdx.kyosk.ui.BaseFragment
+import com.github.didahdx.kyosk.ui.MainActivity
 import com.github.didahdx.kyosk.ui.extensions.snackBar
 import com.github.didahdx.kyosk.ui.home.HomeFragment
 
@@ -27,8 +29,9 @@ class ProductDetailFragment : BaseFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        val appComp = (requireNotNull(this.activity).application as App).appComponent
-        appComp.inject(this)
+        val fragmentComponent= (requireNotNull(this.activity).application as App)
+            .appComponent.getFragmentComponentFactory().create()
+        fragmentComponent.inject(this)
  }
 
     override fun onCreateView(

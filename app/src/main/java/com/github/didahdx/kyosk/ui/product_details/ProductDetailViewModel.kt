@@ -23,7 +23,6 @@ class ProductDetailViewModel @Inject constructor(
                 items.value = product
             }, {
                 Timber.e(it)
-
             })
         compositeDisposable.add(dispose)
     }
@@ -31,6 +30,7 @@ class ProductDetailViewModel @Inject constructor(
 
     override fun onCleared() {
         super.onCleared()
+        productDetailRepository.clear()
         compositeDisposable.clear()
     }
 }

@@ -15,6 +15,7 @@ import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.data.mapper.mapToCategoryEntity
 import com.github.didahdx.kyosk.databinding.HomeFragmentBinding
 import com.github.didahdx.kyosk.ui.BaseFragment
+import com.github.didahdx.kyosk.ui.MainActivity
 import com.github.didahdx.kyosk.ui.catergory.CategoryFragment
 import com.github.didahdx.kyosk.ui.extensions.hide
 import com.github.didahdx.kyosk.ui.extensions.navigateSafe
@@ -36,8 +37,9 @@ class HomeFragment : BaseFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        val appComp = (requireNotNull(this.activity).application as App).appComponent
-        appComp.inject(this)
+        val fragmentComponent= (requireNotNull(this.activity).application as App)
+            .appComponent.getFragmentComponentFactory().create()
+        fragmentComponent.inject(this)
     }
 
     override fun onCreateView(
@@ -58,7 +60,6 @@ class HomeFragment : BaseFragment() {
                     //not used
                 }
                 is RecyclerViewItems.CategoryTitle -> {
-
                     val bundle =
                         bundleOf(CategoryFragment.categoryTitle to item.mapToCategoryEntity())
                     this.findNavController()
