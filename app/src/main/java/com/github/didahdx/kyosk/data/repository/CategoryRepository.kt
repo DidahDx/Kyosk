@@ -10,6 +10,7 @@ import com.github.didahdx.kyosk.data.remote.dto.ProductItemDto
 import com.github.didahdx.kyosk.ui.home.RecyclerViewItems
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
@@ -32,14 +33,12 @@ class CategoryRepository @Inject constructor(
         return Observable.create { emitter ->
             emitter.onNext(Resources.Loading<List<RecyclerViewItems>>())
 
-            val disposable = getProducts().subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
+            compositeDisposable += getProducts().subscribeOn(Schedulers.io())
                 .switchMap { productList ->
                     val product = productList.map { it.mapToProductEntity() }
                     productDao.insert(product).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe()
                     return@switchMap productDao.getAllProductsByCategory(category = categoryTitle.code)
                         .subscribeOn(Schedulers.io())
-                        .observeOn(Schedulers.io())
                 }.map { productList ->
                     val list = ArrayList<RecyclerViewItems>()
 //                    list.add(categoryTitle)
@@ -52,8 +51,6 @@ class CategoryRepository @Inject constructor(
                     emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.stackTraceToString()))
                 })
 
-
-            compositeDisposable.add(disposable)
         }
     }
 
@@ -61,9 +58,8 @@ class CategoryRepository @Inject constructor(
         return Observable.create { emitter ->
             emitter.onNext(Resources.Loading<List<RecyclerViewItems>>())
 
-            val disposable = productDao.getAllProductsByCategory(category = categoryTitle.code)
+            compositeDisposable += productDao.getAllProductsByCategory(category = categoryTitle.code)
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
                 .map { productList ->
                     val list = ArrayList<RecyclerViewItems>()
                     list.addAll(productList.map { it.mapToProductItem() })
@@ -76,7 +72,6 @@ class CategoryRepository @Inject constructor(
                     emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.stackTraceToString()))
                 })
 
-            compositeDisposable.add(disposable)
         }
     }
 

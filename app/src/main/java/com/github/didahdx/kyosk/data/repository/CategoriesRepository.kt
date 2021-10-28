@@ -11,6 +11,7 @@ import com.github.didahdx.kyosk.ui.home.RecyclerViewItems
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
@@ -41,14 +42,12 @@ class CategoriesRepository @Inject constructor(
         return Observable.create<Resources<List<RecyclerViewItems.CategoryTitle>>>() { emitter ->
             emitter.onNext(Resources.Loading<List<RecyclerViewItems.CategoryTitle>>())
 
-            val disposable=getCategories().subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
+            compositeDisposable += getCategories().subscribeOn(Schedulers.io())
                 .switchMap { categoryList ->
                     val categories =
                         categoryList.first().categories.map { category -> category.mapToCategoryEntity() }
-                    categoryDao.insert(categories).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe()
+                    categoryDao.insert(categories).subscribeOn(Schedulers.io()).subscribe()
                     return@switchMap categoryDao.getAllCategories().subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
                 }.map { category ->
                     category.map { it.mapToCategoryTitle() }
                 }.subscribe({
@@ -59,7 +58,6 @@ class CategoriesRepository @Inject constructor(
                     emitter.onNext(Resources.Error<List<RecyclerViewItems.CategoryTitle>>(error.stackTraceToString()))
                 })
 
-            compositeDisposable.add(disposable)
         }
     }
 
@@ -68,8 +66,7 @@ class CategoriesRepository @Inject constructor(
         return Observable.create<Resources<List<RecyclerViewItems.CategoryTitle>>>() { emitter ->
             emitter.onNext(Resources.Loading<List<RecyclerViewItems.CategoryTitle>>())
 
-           val dispose= categoryDao.getAllCategories().subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
+            compositeDisposable += categoryDao.getAllCategories().subscribeOn(Schedulers.io())
                 .map { category ->
                     category.map { it.mapToCategoryTitle() }
                 }
@@ -80,7 +77,6 @@ class CategoriesRepository @Inject constructor(
                     Timber.e(error)
                     emitter.onNext(Resources.Error<List<RecyclerViewItems.CategoryTitle>>(error.stackTraceToString()))
                 })
-            compositeDisposable.addAll(dispose)
         }
     }
 
