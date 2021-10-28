@@ -79,9 +79,11 @@ class ApiServiceModule {
 
 
     @Provides
-    fun provideShopRepository(shopApiServices: ShopApiServices,
-                              categoryDao: CategoryDao,
-                              productDao: ProductDao,networkAvailability: NetworkAvailability):ShopRepository{
-        return ShopRepositoryImpl(shopApiServices, categoryDao, productDao,networkAvailability)
+    fun provideShopRepository(
+        shopApiServices: ShopApiServices,
+        categoryDao: CategoryDao,
+        productDao: ProductDao, networkAvailability: NetworkAvailability
+    ): ShopRepository {
+        return ShopRepositoryImpl(shopApiServices, categoryDao, productDao, networkAvailability)
     }
 }

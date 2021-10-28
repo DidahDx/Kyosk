@@ -25,24 +25,24 @@ class ProductDetailFragment : BaseFragment() {
     private var _binding: ProductDetailFragmentBinding? = null
     private val binding get() = _binding!!
 
-    var productId: Int? =0
+    var productId: Int? = 0
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        val fragmentComponent= (requireNotNull(this.activity).application as App)
+        val fragmentComponent = (requireNotNull(this.activity).application as App)
             .appComponent.getFragmentComponentFactory().create()
         fragmentComponent.inject(this)
- }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = ProductDetailFragmentBinding.inflate(inflater,container,false)
+        _binding = ProductDetailFragmentBinding.inflate(inflater, container, false)
         productId = arguments?.getInt(HomeFragment.productId)
         productId?.let { productDetailViewModel.getProduct(it) }
-        productDetailViewModel.items.observe(viewLifecycleOwner,{item->
-            when(item){
+        productDetailViewModel.items.observe(viewLifecycleOwner, { item ->
+            when (item) {
                 is Resources.Error -> {
                     item.message?.let { binding.root.snackBar(it) }
                 }
@@ -50,9 +50,9 @@ class ProductDetailFragment : BaseFragment() {
                     //loading
                 }
                 is Resources.Success -> {
-                    binding.description.text= item.data?.description
-                    binding.title.text= item.data?.title
-                    binding.price.text= getString(R.string.currency_kes, item.data?.price)
+                    binding.description.text = item.data?.description
+                    binding.title.text = item.data?.title
+                    binding.price.text = getString(R.string.currency_kes, item.data?.price)
                     Glide
                         .with(binding.root.context)
                         .load(item.data?.image)

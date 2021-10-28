@@ -31,8 +31,8 @@ class CategoriesFragment : BaseFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-       val fragmentComponent= (requireNotNull(this.activity).application as App)
-           .appComponent.getFragmentComponentFactory().create()
+        val fragmentComponent = (requireNotNull(this.activity).application as App)
+            .appComponent.getFragmentComponentFactory().create()
         fragmentComponent.inject(this)
     }
 
@@ -62,10 +62,10 @@ class CategoriesFragment : BaseFragment() {
                         .navigateSafe(R.id.action_categoriesFragment_to_categoryFragment, bundle)
                 }
                 is RecyclerViewItems.ProductItem -> {
-                   //not used
+                    //not used
                 }
                 is RecyclerViewItems.ProductItemList -> {
-                   //not used
+                    //not used
                 }
             }
         }

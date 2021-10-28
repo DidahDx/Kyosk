@@ -23,15 +23,17 @@ class MainActivity : AppCompatActivity() {
     lateinit var activitySubComponent: ActivitySubComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
-         activitySubComponent=(application as App).appComponent.getActivityComponentFactory().create()
+        activitySubComponent =
+            (application as App).appComponent.getActivityComponentFactory().create()
         activitySubComponent.inject(this)
         setTheme(R.style.Theme_Kyosk)
         super.onCreate(savedInstanceState)
-       val binding = ActivityMainBinding.inflate(layoutInflater)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //setup navigation component to bottom navigation bar
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController)
     }

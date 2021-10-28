@@ -21,20 +21,21 @@ class DbModule {
     fun provideShopDatabase(application: Application): ShopDatabase {
         return Room.databaseBuilder(
             application,
-            ShopDatabase::class.java, Constants.SHOP_DB_NAME)
+            ShopDatabase::class.java, Constants.SHOP_DB_NAME
+        )
             .fallbackToDestructiveMigration()
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideCategoryDao(shopDatabase: ShopDatabase): CategoryDao{
-        return  shopDatabase.getCategoryDao()
+    fun provideCategoryDao(shopDatabase: ShopDatabase): CategoryDao {
+        return shopDatabase.getCategoryDao()
     }
 
     @Provides
     @Singleton
-    fun provideProductDao(shopDatabase: ShopDatabase): ProductDao{
-        return  shopDatabase.getProductDao()
+    fun provideProductDao(shopDatabase: ShopDatabase): ProductDao {
+        return shopDatabase.getProductDao()
     }
 }

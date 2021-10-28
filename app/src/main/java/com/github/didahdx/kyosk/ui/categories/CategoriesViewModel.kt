@@ -34,7 +34,8 @@ class CategoriesViewModel @Inject constructor(
                 categories.value = item
             }, {
                 Timber.e(it)
-                categories.value= Resources.Error<List<RecyclerViewItems.CategoryTitle>>("Something went wrong")
+                categories.value =
+                    Resources.Error<List<RecyclerViewItems.CategoryTitle>>("Something went wrong")
             })
     }
 

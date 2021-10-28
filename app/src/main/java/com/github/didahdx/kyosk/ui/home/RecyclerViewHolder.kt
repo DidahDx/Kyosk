@@ -19,7 +19,7 @@ sealed class RecyclerViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
 
     class CategoriesChipViewHolderList(private val binding: ItemHorizontalCategoryBinding) :
         RecyclerViewHolder(binding) {
-        fun setChipCheckChip(chipId: Int){
+        fun setChipCheckChip(chipId: Int) {
             binding.chipGroup.check(chipId)
         }
 
@@ -59,7 +59,8 @@ sealed class RecyclerViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
     class ProductsViewHolderList(private val binding: ItemHorizontalViewBinding) :
         RecyclerViewHolder(binding), NestedRecyclerViewViewHolder {
         lateinit var productItemList: RecyclerViewItems.ProductItemList
-        init{
+
+        init {
             binding.rvCategory.apply {
                 layoutManager =
                     LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)
@@ -68,10 +69,10 @@ sealed class RecyclerViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
         }
 
         fun bind(productItemList: RecyclerViewItems.ProductItemList) {
-            this.productItemList= productItemList
+            this.productItemList = productItemList
             with(binding) {
-                ( rvCategory.adapter as  RecyclerViewAdapter).itemClickListener = itemClickListener
-                ( rvCategory.adapter as  RecyclerViewAdapter).submitList(productItemList.productList)
+                (rvCategory.adapter as RecyclerViewAdapter).itemClickListener = itemClickListener
+                (rvCategory.adapter as RecyclerViewAdapter).submitList(productItemList.productList)
             }
         }
 

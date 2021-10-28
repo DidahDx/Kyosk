@@ -37,7 +37,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        val fragmentComponent= (requireNotNull(this.activity).application as App)
+        val fragmentComponent = (requireNotNull(this.activity).application as App)
             .appComponent.getFragmentComponentFactory().create()
         fragmentComponent.inject(this)
     }
@@ -47,7 +47,7 @@ class HomeFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = HomeFragmentBinding.inflate(inflater, container, false)
-       val recyclerViewAdapter = RecyclerViewAdapter()
+        val recyclerViewAdapter = RecyclerViewAdapter()
         binding.mainRecyclerview.apply {
             layoutManager = LinearLayoutManager(binding.root.context)
             adapter = recyclerViewAdapter

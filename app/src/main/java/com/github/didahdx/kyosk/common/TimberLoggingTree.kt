@@ -11,9 +11,9 @@ import timber.log.Timber
 /**
  * Created by Daniel Didah on 10/20/21.
  */
-class TimberLoggingTree: Timber.DebugTree()  {
+class TimberLoggingTree : Timber.DebugTree() {
 
-    init{
+    init {
         val formatStrategy: FormatStrategy = PrettyFormatStrategy.newBuilder()
             .showThreadInfo(true)
             .methodCount(1) // (Optional) How many method line to show. Default 2

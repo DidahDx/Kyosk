@@ -15,7 +15,8 @@ class NetworkAvailability @Inject constructor(private val application: Applicati
 
     @SuppressLint("ObsoleteSdkInt")
     fun isNetworkAvailable(): Boolean {
-        val connectivityManager=application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val network = connectivityManager.activeNetwork ?: return false

@@ -12,7 +12,7 @@ import javax.inject.Singleton
 /**
  * Created by Daniel Didah on 10/22/21.
  */
-@Component(modules = [ApiServiceModule::class,AppSubComponents::class, DbModule::class,  CommonUiModule::class])
+@Component(modules = [ApiServiceModule::class, AppSubComponents::class, DbModule::class, CommonUiModule::class])
 @Singleton
 interface AppComponent {
 
@@ -20,7 +20,7 @@ interface AppComponent {
     fun getFragmentComponentFactory(): FragmentSubComponent.Factory
 
     @Component.Builder
-    interface Builder{
+    interface Builder {
 
         @BindsInstance
         fun application(application: Application): Builder

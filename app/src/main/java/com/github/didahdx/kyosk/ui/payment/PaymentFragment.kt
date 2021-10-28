@@ -19,5 +19,4 @@ class PaymentFragment : BaseFragment() {
     }
 
 
-
 }

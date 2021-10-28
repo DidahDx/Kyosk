@@ -81,7 +81,7 @@ class CategoriesRepository @Inject constructor(
     }
 
 
-    fun onClear(){
+    fun onClear() {
         compositeDisposable.clear()
     }
 }

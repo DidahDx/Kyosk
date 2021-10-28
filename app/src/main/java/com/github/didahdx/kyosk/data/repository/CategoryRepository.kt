@@ -36,7 +36,8 @@ class CategoryRepository @Inject constructor(
             compositeDisposable += getProducts().subscribeOn(Schedulers.io())
                 .switchMap { productList ->
                     val product = productList.map { it.mapToProductEntity() }
-                    productDao.insert(product).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe()
+                    productDao.insert(product).subscribeOn(Schedulers.io())
+                        .observeOn(Schedulers.io()).subscribe()
                     return@switchMap productDao.getAllProductsByCategory(category = categoryTitle.code)
                         .subscribeOn(Schedulers.io())
                 }.map { productList ->

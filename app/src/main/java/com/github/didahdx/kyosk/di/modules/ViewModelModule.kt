@@ -21,7 +21,7 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
-     abstract fun bindMainActivityViewModel(homeViewModel: HomeViewModel.Factory): AssistedSavedStateViewModelFactory<out ViewModel>
+    abstract fun bindMainActivityViewModel(homeViewModel: HomeViewModel.Factory): AssistedSavedStateViewModelFactory<out ViewModel>
 
     @Binds
     @IntoMap

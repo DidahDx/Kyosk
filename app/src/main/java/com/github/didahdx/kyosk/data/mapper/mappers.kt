@@ -25,10 +25,11 @@ fun ProductEntity.mapToProductItem(): RecyclerViewItems.ProductItem {
 }
 
 fun CategoryEntity.mapToCategoryTitle(): RecyclerViewItems.CategoryTitle {
-    return RecyclerViewItems.CategoryTitle( code, description)
+    return RecyclerViewItems.CategoryTitle(code, description)
 }
+
 fun CategoryEntity.mapToCategoryChip(): RecyclerViewItems.CategoryChip {
-    return RecyclerViewItems.CategoryChip( code, description)
+    return RecyclerViewItems.CategoryChip(code, description)
 }
 
 fun CategoryProductsRelation.mapToProductItemList(): RecyclerViewItems.ProductItemList {
@@ -38,10 +39,10 @@ fun CategoryProductsRelation.mapToProductItemList(): RecyclerViewItems.ProductIt
 fun List<CategoryEntity>.mapToCategoryChipList(): RecyclerViewItems.CategoriesChipList {
     val allOption = CategoryEntity("All", "All")
     val list = this.toMutableList()
-    list.add(0,allOption)
+    list.add(0, allOption)
     return RecyclerViewItems.CategoriesChipList(list.map { categoryEntity -> categoryEntity.mapToCategoryChip() })
 }
 
-fun RecyclerViewItems.CategoryTitle.mapToCategoryEntity():CategoryEntity{
+fun RecyclerViewItems.CategoryTitle.mapToCategoryEntity(): CategoryEntity {
     return CategoryEntity(code, description)
 }

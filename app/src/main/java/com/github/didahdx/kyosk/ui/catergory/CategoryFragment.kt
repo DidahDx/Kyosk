@@ -40,7 +40,7 @@ class CategoryFragment : BaseFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        val fragmentComponent= (requireNotNull(this.activity).application as App)
+        val fragmentComponent = (requireNotNull(this.activity).application as App)
             .appComponent.getFragmentComponentFactory().create()
         fragmentComponent.inject(this)
     }
@@ -70,9 +70,9 @@ class CategoryFragment : BaseFragment() {
                     //not supported
                 }
                 is RecyclerViewItems.ProductItem -> {
-                    val bundle= bundleOf(HomeFragment.productId to item.id)
+                    val bundle = bundleOf(HomeFragment.productId to item.id)
                     this.findNavController()
-                        .navigateSafe(R.id.action_categoryFragment_to_productDetailFragment,bundle)
+                        .navigateSafe(R.id.action_categoryFragment_to_productDetailFragment, bundle)
                 }
                 is RecyclerViewItems.ProductItemList -> {
                     //not supported

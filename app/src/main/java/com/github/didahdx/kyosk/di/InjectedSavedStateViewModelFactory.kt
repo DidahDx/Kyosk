@@ -46,7 +46,8 @@ class InjectedSavedStateViewModelFactory @Inject constructor(
         handle: SavedStateHandle
     ): ViewModel? {
         val creator = assistedFactories[modelClass]
-            ?: assistedFactories.asIterable().firstOrNull { modelClass.isAssignableFrom(it.key) }?.value
+            ?: assistedFactories.asIterable()
+                .firstOrNull { modelClass.isAssignableFrom(it.key) }?.value
             ?: return null
 
         return creator.create(handle)
@@ -57,7 +58,8 @@ class InjectedSavedStateViewModelFactory @Inject constructor(
      */
     private fun <T : ViewModel?> createInjectViewModel(modelClass: Class<T>): ViewModel? {
         val creator = viewModelProviders[modelClass]
-            ?: viewModelProviders.asIterable().firstOrNull { modelClass.isAssignableFrom(it.key) }?.value
+            ?: viewModelProviders.asIterable()
+                .firstOrNull { modelClass.isAssignableFrom(it.key) }?.value
             ?: return null
 
         return creator.get()

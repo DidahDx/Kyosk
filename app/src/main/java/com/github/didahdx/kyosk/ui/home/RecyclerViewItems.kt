@@ -6,7 +6,7 @@ import android.os.Parcelable
 /**
  * Created by Daniel Didah on 10/22/21.
  */
-sealed class RecyclerViewItems{
+sealed class RecyclerViewItems {
 
     data class ProductItem(
         var category: String,
@@ -15,24 +15,24 @@ sealed class RecyclerViewItems{
         var image: String,
         var price: Int,
         var title: String
-    ): RecyclerViewItems()
+    ) : RecyclerViewItems()
 
     data class CategoryTitle(
         var code: String,
         var description: String
-    ): RecyclerViewItems()
+    ) : RecyclerViewItems()
 
     data class CategoryChip(
         var code: String,
         var description: String
-    ): RecyclerViewItems()
+    ) : RecyclerViewItems()
 
     data class ProductItemList(
         var productList: List<ProductItem>
-    ): RecyclerViewItems()
+    ) : RecyclerViewItems()
 
     data class CategoriesChipList(
         var categoryTitleList: List<CategoryChip>
-    ):RecyclerViewItems()
+    ) : RecyclerViewItems()
 
 }

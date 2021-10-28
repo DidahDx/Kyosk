@@ -41,9 +41,10 @@ class ShopRepositoryImpl @Inject constructor(
             emitter.onNext(Resources.Loading<List<RecyclerViewItems>>())
 
             //getting categories and products list (Network call)
-            compositeDisposable += Observable.zip(getCategories().subscribeOn(Schedulers.io()).doOnError {
-                emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.stackTraceToString()))
-            },
+            compositeDisposable += Observable.zip(getCategories().subscribeOn(Schedulers.io())
+                .doOnError {
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.stackTraceToString()))
+                },
                 getProducts().subscribeOn(Schedulers.io()).doOnError {
                     emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.stackTraceToString()))
                 },
