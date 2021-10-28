@@ -8,6 +8,7 @@ import com.github.didahdx.kyosk.data.remote.NetworkAvailability
 import com.github.didahdx.kyosk.data.remote.api.ShopApiServices
 import com.github.didahdx.kyosk.data.repository.ShopRepository
 import com.github.didahdx.kyosk.data.repository.ShopRepositoryImpl
+import com.github.didahdx.kyosk.di.FragmentScope
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -78,7 +79,6 @@ class ApiServiceModule {
 
 
     @Provides
-    @Singleton
     fun provideShopRepository(shopApiServices: ShopApiServices,
                               categoryDao: CategoryDao,
                               productDao: ProductDao,networkAvailability: NetworkAvailability):ShopRepository{

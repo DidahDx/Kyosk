@@ -2,6 +2,7 @@ package com.github.didahdx.kyosk.di.modules
 
 import androidx.lifecycle.ViewModel
 import com.github.didahdx.kyosk.di.AssistedSavedStateViewModelFactory
+import com.github.didahdx.kyosk.di.FragmentScope
 import com.github.didahdx.kyosk.di.ViewModelKey
 import com.github.didahdx.kyosk.ui.categories.CategoriesViewModel
 import com.github.didahdx.kyosk.ui.catergory.CategoryViewModel
