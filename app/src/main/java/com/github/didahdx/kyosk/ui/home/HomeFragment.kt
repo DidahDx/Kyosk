@@ -103,7 +103,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        homeViewModel.setFilter("All")
+        homeViewModel.filter.value?.let { homeViewModel.setFilter(it) }
     }
 
     override fun onDestroyView() {

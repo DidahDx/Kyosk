@@ -11,10 +11,11 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import timber.log.Timber
-import javax.inject.Inject
+import java.util.concurrent.TimeUnit
 
 class HomeViewModel @AssistedInject constructor(
     private val shopRepository: ShopRepository,
@@ -26,20 +27,26 @@ class HomeViewModel @AssistedInject constructor(
         override fun create(savedStateHandle: SavedStateHandle): HomeViewModel
     }
 
+    companion object {
+        const val FILTER_KEY = "filter"
+        const val DEFAULT_FILTER_VALUE = "All"
+    }
+
     var filterPublishSubject: PublishSubject<String> = PublishSubject.create()
-    val filter = savedStateHandle.getLiveData("filter", "All")
+    val filter = savedStateHandle.getLiveData(FILTER_KEY, DEFAULT_FILTER_VALUE)
     val allItems = MutableLiveData<Resources<List<RecyclerViewItems>>>()
     private val compositeDisposable = CompositeDisposable()
 
     init {
         getProductsData()
-        setFilter(filter.value ?: "All")
+        setFilter(filter.value ?: DEFAULT_FILTER_VALUE)
     }
 
     private fun getProductsData() {
-        val items = filterPublishSubject.subscribeOn(Schedulers.io())
-            .observeOn(Schedulers.io())
+        compositeDisposable += filterPublishSubject.subscribeOn(Schedulers.io())
+            .throttleLast(300, TimeUnit.MILLISECONDS)
             .switchMap { code ->
+                Timber.e("Log last $code")
                 return@switchMap shopRepository.fetchAll(code).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
             }
@@ -48,10 +55,11 @@ class HomeViewModel @AssistedInject constructor(
                 Timber.e("$it")
             }, {
                 Timber.e(it)
-                allItems.value = Resources.Error<List<RecyclerViewItems>>("Something went wrong")
+                allItems.value = Resources.Error<List<RecyclerViewItems>>(
+                    it.localizedMessage ?: it.stackTraceToString()
+                )
             })
 
-        compositeDisposable.add(items)
     }
 
     fun setFilter(code: String) {
@@ -62,8 +70,8 @@ class HomeViewModel @AssistedInject constructor(
 
     override fun onCleared() {
         super.onCleared()
-        compositeDisposable.clear()
         shopRepository.clear()
+        compositeDisposable.clear()
     }
 
 }

@@ -43,10 +43,12 @@ class ShopRepositoryImpl @Inject constructor(
             //getting categories and products list (Network call)
             compositeDisposable += Observable.zip(getCategories().subscribeOn(Schedulers.io())
                 .doOnError {
-                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.stackTraceToString()))
+                    Timber.e(it)
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.localizedMessage ?: it.stackTraceToString()))
                 },
                 getProducts().subscribeOn(Schedulers.io()).doOnError {
-                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.stackTraceToString()))
+                    Timber.e(it)
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.localizedMessage ?: it.stackTraceToString()))
                 },
                 { categoryList, productsItemsList ->
                     //get all categories and save to database
@@ -64,7 +66,9 @@ class ShopRepositoryImpl @Inject constructor(
                     productDao.insert(products).subscribeOn(Schedulers.io()).subscribe()
 
                 }).subscribeOn(Schedulers.io())
-                .doOnError { emitter.onNext(Resources.Error<List<RecyclerViewItems>>("Something went wrong")) }
+                .doOnError {
+                    Timber.e(it)
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.localizedMessage ?: it.stackTraceToString())) }
                 .switchMap {
                     //get all categories and products from database
                     return@switchMap categoryDao.getAllCategories().subscribeOn(Schedulers.io())
@@ -80,7 +84,7 @@ class ShopRepositoryImpl @Inject constructor(
                                         "Categories"
                                     )
                                 )
-                                val items = categoriesList.mapToCategoryChipList()
+                                val items = categoriesList.mapToCategoryChipList(code)
                                 productListItems.add(items)
 
                                 //categories with its products list
@@ -99,7 +103,7 @@ class ShopRepositoryImpl @Inject constructor(
                     Timber.e(error)
                     emitter.onNext(
                         Resources.Error<List<RecyclerViewItems>>(
-                            error.stackTraceToString()
+                            error.localizedMessage ?: error.stackTraceToString()
                         )
                     )
                 })
@@ -129,7 +133,7 @@ class ShopRepositoryImpl @Inject constructor(
                         productListItems.add(
                             RecyclerViewItems.CategoryTitle("Categories", "Categories")
                         )
-                        val items = categoriesList.mapToCategoryChipList()
+                        val items = categoriesList.mapToCategoryChipList(code)
                         productListItems.add(items)
 
                         //categories with its products list
@@ -147,7 +151,8 @@ class ShopRepositoryImpl @Inject constructor(
                     Timber.e("$item")
                 }, {
                     Timber.e(it)
-                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.stackTraceToString()))
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(
+                        it.localizedMessage ?: it.stackTraceToString()))
                 })
         }
     }

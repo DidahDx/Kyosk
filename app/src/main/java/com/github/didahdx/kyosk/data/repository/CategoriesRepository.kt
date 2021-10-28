@@ -2,13 +2,12 @@ package com.github.didahdx.kyosk.data.repository
 
 import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.data.local.dao.CategoryDao
-import com.github.didahdx.kyosk.data.mapper.mapToCategoryTitle
 import com.github.didahdx.kyosk.data.mapper.mapToCategoryEntity
+import com.github.didahdx.kyosk.data.mapper.mapToCategoryTitle
 import com.github.didahdx.kyosk.data.remote.NetworkAvailability
 import com.github.didahdx.kyosk.data.remote.api.ShopApiServices
 import com.github.didahdx.kyosk.data.remote.dto.CategoryListDto
 import com.github.didahdx.kyosk.ui.home.RecyclerViewItems
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign

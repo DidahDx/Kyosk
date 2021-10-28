@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @FragmentScope
@@ -27,6 +28,7 @@ class CategoriesViewModel @Inject constructor(
 
     private fun fetchAllCategories() {
         compositeDisposable += categoriesRepository.fetchAll()
+            .debounce(300,TimeUnit.MILLISECONDS)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ item ->

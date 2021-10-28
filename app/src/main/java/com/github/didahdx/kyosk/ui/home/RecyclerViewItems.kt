@@ -23,6 +23,7 @@ sealed class RecyclerViewItems {
     ) : RecyclerViewItems()
 
     data class CategoryChip(
+        var isSelected: Boolean,
         var code: String,
         var description: String
     ) : RecyclerViewItems()

@@ -27,10 +27,10 @@ sealed class RecyclerViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(
             binding.chipGroup.removeAllViews()
             for (item in categoriesChipList.categoryTitleList.indices) {
                 val chip = Chip(binding.chipGroup.context)
-                val description = categoriesChipList.categoryTitleList[item].description
-                chip.text = description
+                val categoryChip = categoriesChipList.categoryTitleList[item]
+                chip.text = categoryChip.description
                 chip.id = item
-                if (description == "All") {
+                if (categoryChip.isSelected) {
                     chip.isChecked = true
                 }
                 binding.chipGroup.addView(chip)
