@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.github.didahdx.kyosk.R
 import com.github.didahdx.kyosk.databinding.*
+import com.github.didahdx.kyosk.di.FragmentScope
 import com.github.didahdx.kyosk.ui.staterestorationadapter.NestedRecyclerViewStateRecoverAdapter
+import javax.inject.Inject
 
 /**
  * Created by Daniel Didah on 10/24/21.
  */
-class RecyclerViewAdapter :
+@FragmentScope
+class RecyclerViewAdapter @Inject constructor():
     NestedRecyclerViewStateRecoverAdapter<RecyclerViewItems, RecyclerViewHolder>(
         RecyclerViewDiffUtil()
     ) {

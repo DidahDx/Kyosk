@@ -15,12 +15,12 @@ import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.data.mapper.mapToCategoryEntity
 import com.github.didahdx.kyosk.databinding.HomeFragmentBinding
 import com.github.didahdx.kyosk.ui.BaseFragment
-import com.github.didahdx.kyosk.ui.MainActivity
 import com.github.didahdx.kyosk.ui.catergory.CategoryFragment
 import com.github.didahdx.kyosk.ui.extensions.hide
 import com.github.didahdx.kyosk.ui.extensions.navigateSafe
 import com.github.didahdx.kyosk.ui.extensions.snackBar
 import timber.log.Timber
+import javax.inject.Inject
 
 class HomeFragment : BaseFragment() {
 
@@ -30,6 +30,8 @@ class HomeFragment : BaseFragment() {
     private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
 
+    @Inject
+    lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
     companion object {
         const val productId = "productId"
@@ -47,12 +49,10 @@ class HomeFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = HomeFragmentBinding.inflate(inflater, container, false)
-        val recyclerViewAdapter = RecyclerViewAdapter()
         binding.mainRecyclerview.apply {
             layoutManager = LinearLayoutManager(binding.root.context)
             adapter = recyclerViewAdapter
         }
-
 
         recyclerViewAdapter.itemClickListener = { _, item, _ ->
             when (item) {
@@ -108,6 +108,7 @@ class HomeFragment : BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.mainRecyclerview.adapter = null
         _binding = null
     }
 
