@@ -15,6 +15,6 @@ import com.github.didahdx.kyosk.data.local.entities.ProductEntity
     version = 1, exportSchema = false
 )
 abstract class ShopDatabase : RoomDatabase() {
-    abstract fun getProductDao() :ProductDao
-    abstract fun getCategoryDao() :CategoryDao
+    abstract fun getProductDao(): ProductDao
+    abstract fun getCategoryDao(): CategoryDao
 }

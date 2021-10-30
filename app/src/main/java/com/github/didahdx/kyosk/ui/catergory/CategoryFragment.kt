@@ -17,6 +17,7 @@ import com.github.didahdx.kyosk.data.local.entities.CategoryEntity
 import com.github.didahdx.kyosk.data.mapper.mapToCategoryTitle
 import com.github.didahdx.kyosk.databinding.CategoryFragmentBinding
 import com.github.didahdx.kyosk.ui.BaseFragment
+import com.github.didahdx.kyosk.ui.MainActivity
 import com.github.didahdx.kyosk.ui.extensions.hide
 import com.github.didahdx.kyosk.ui.extensions.navigateSafe
 import com.github.didahdx.kyosk.ui.extensions.snackBar
@@ -39,8 +40,10 @@ class CategoryFragment : BaseFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireNotNull(this.activity).application as App).appComponent.inject(this)
- }
+        val fragmentComponent = (requireNotNull(this.activity).application as App)
+            .appComponent.getFragmentComponentFactory().create()
+        fragmentComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,9 +70,9 @@ class CategoryFragment : BaseFragment() {
                     //not supported
                 }
                 is RecyclerViewItems.ProductItem -> {
-                    val bundle= bundleOf(HomeFragment.productId to item.id)
+                    val bundle = bundleOf(HomeFragment.productId to item.id)
                     this.findNavController()
-                        .navigateSafe(R.id.action_categoryFragment_to_productDetailFragment,bundle)
+                        .navigateSafe(R.id.action_categoryFragment_to_productDetailFragment, bundle)
                 }
                 is RecyclerViewItems.ProductItemList -> {
                     //not supported

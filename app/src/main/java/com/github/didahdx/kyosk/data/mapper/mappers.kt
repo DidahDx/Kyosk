@@ -25,23 +25,28 @@ fun ProductEntity.mapToProductItem(): RecyclerViewItems.ProductItem {
 }
 
 fun CategoryEntity.mapToCategoryTitle(): RecyclerViewItems.CategoryTitle {
-    return RecyclerViewItems.CategoryTitle( code, description)
+    return RecyclerViewItems.CategoryTitle(code, description)
 }
-fun CategoryEntity.mapToCategoryChip(): RecyclerViewItems.CategoryChip {
-    return RecyclerViewItems.CategoryChip( code, description)
+
+fun CategoryEntity.mapToCategoryChip(selectedCode: String): RecyclerViewItems.CategoryChip {
+    return RecyclerViewItems.CategoryChip(selectedCode == code, code, description)
 }
 
 fun CategoryProductsRelation.mapToProductItemList(): RecyclerViewItems.ProductItemList {
     return RecyclerViewItems.ProductItemList(this.productEntity.map { productEntity -> productEntity.mapToProductItem() })
 }
 
-fun List<CategoryEntity>.mapToCategoryChipList(): RecyclerViewItems.CategoriesChipList {
+fun List<CategoryEntity>.mapToCategoryChipList(code: String): RecyclerViewItems.CategoriesChipList {
     val allOption = CategoryEntity("All", "All")
     val list = this.toMutableList()
-    list.add(0,allOption)
-    return RecyclerViewItems.CategoriesChipList(list.map { categoryEntity -> categoryEntity.mapToCategoryChip() })
+    list.add(0, allOption)
+    return RecyclerViewItems.CategoriesChipList(list.map { categoryEntity ->
+        categoryEntity.mapToCategoryChip(
+            code
+        )
+    })
 }
 
-fun RecyclerViewItems.CategoryTitle.mapToCategoryEntity():CategoryEntity{
+fun RecyclerViewItems.CategoryTitle.mapToCategoryEntity(): CategoryEntity {
     return CategoryEntity(code, description)
 }

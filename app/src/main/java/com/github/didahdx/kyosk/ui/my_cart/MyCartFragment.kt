@@ -17,5 +17,4 @@ class MyCartFragment : Fragment() {
     }
 
 
-
 }

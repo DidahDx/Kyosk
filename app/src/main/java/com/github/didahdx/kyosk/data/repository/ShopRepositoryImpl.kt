@@ -9,9 +9,9 @@ import com.github.didahdx.kyosk.data.remote.api.ShopApiServices
 import com.github.didahdx.kyosk.data.remote.dto.CategoryListDto
 import com.github.didahdx.kyosk.data.remote.dto.ProductItemDto
 import com.github.didahdx.kyosk.ui.home.RecyclerViewItems
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
@@ -25,7 +25,7 @@ class ShopRepositoryImpl @Inject constructor(
     private val productDao: ProductDao,
     private val networkAvailability: NetworkAvailability
 ) : ShopRepository {
-    private val compositeDisposable=CompositeDisposable()
+    private val compositeDisposable = CompositeDisposable()
 
     override fun getCategories(): Observable<List<CategoryListDto>> {
         return shopApiServices.getCategories()
@@ -41,11 +41,14 @@ class ShopRepositoryImpl @Inject constructor(
             emitter.onNext(Resources.Loading<List<RecyclerViewItems>>())
 
             //getting categories and products list (Network call)
-          val disposable= Observable.zip(getCategories().subscribeOn(Schedulers.io()).doOnError {
-                emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.stackTraceToString()))
-            },
+            compositeDisposable += Observable.zip(getCategories().subscribeOn(Schedulers.io())
+                .doOnError {
+                    Timber.e(it)
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.localizedMessage ?: it.stackTraceToString()))
+                },
                 getProducts().subscribeOn(Schedulers.io()).doOnError {
-                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.stackTraceToString()))
+                    Timber.e(it)
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.localizedMessage ?: it.stackTraceToString()))
                 },
                 { categoryList, productsItemsList ->
                     //get all categories and save to database
@@ -53,18 +56,19 @@ class ShopRepositoryImpl @Inject constructor(
                         category.mapToCategoryEntity()
                     }
                     Timber.e("$categories")
-                    categoryDao.insert(categories).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe()
+                    categoryDao.insert(categories).subscribeOn(Schedulers.io()).subscribe()
 
                     //get all products and save to database
                     val products = productsItemsList.map { productItemDto ->
                         productItemDto.mapToProductEntity()
                     }
                     Timber.e("$products")
-                    productDao.insert(products).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe()
+                    productDao.insert(products).subscribeOn(Schedulers.io()).subscribe()
 
                 }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnError { emitter.onNext(Resources.Error<List<RecyclerViewItems>>("Something went wrong")) }
+                .doOnError {
+                    Timber.e(it)
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.localizedMessage ?: it.stackTraceToString())) }
                 .switchMap {
                     //get all categories and products from database
                     return@switchMap categoryDao.getAllCategories().subscribeOn(Schedulers.io())
@@ -74,8 +78,13 @@ class ShopRepositoryImpl @Inject constructor(
                                 val productListItems = ArrayList<RecyclerViewItems>()
 
                                 //All category List
-                                productListItems.add(RecyclerViewItems.CategoryTitle("Categories","Categories"))
-                                val items = categoriesList.mapToCategoryChipList()
+                                productListItems.add(
+                                    RecyclerViewItems.CategoryTitle(
+                                        "Categories",
+                                        "Categories"
+                                    )
+                                )
+                                val items = categoriesList.mapToCategoryChipList(code)
                                 productListItems.add(items)
 
                                 //categories with its products list
@@ -86,7 +95,7 @@ class ShopRepositoryImpl @Inject constructor(
 
                                 //return the complete list
                                 productListItems.toList()
-                            }).observeOn(Schedulers.io())
+                            })
                 }.subscribe({ item ->
                     emitter.onNext(Resources.Success<List<RecyclerViewItems>>(item))
                     Timber.e("$item")
@@ -94,19 +103,17 @@ class ShopRepositoryImpl @Inject constructor(
                     Timber.e(error)
                     emitter.onNext(
                         Resources.Error<List<RecyclerViewItems>>(
-                            error.stackTraceToString()
+                            error.localizedMessage ?: error.stackTraceToString()
                         )
                     )
                 })
-
-            compositeDisposable.add(disposable)
         }
     }
 
-    override fun fetchAll(code:String): Observable<Resources<List<RecyclerViewItems>>> {
-        return if(networkAvailability.isNetworkAvailable()){
+    override fun fetchAll(code: String): Observable<Resources<List<RecyclerViewItems>>> {
+        return if (networkAvailability.isNetworkAvailable()) {
             getAllProducts(code)
-        }else{
+        } else {
             getAllProductsDb(code)
         }
     }
@@ -116,15 +123,17 @@ class ShopRepositoryImpl @Inject constructor(
             //display loading data
             emitter.onNext(Resources.Loading<List<RecyclerViewItems>>())
 
-           val disposable= categoryDao.getAllCategories().subscribeOn(Schedulers.io())
+            compositeDisposable += categoryDao.getAllCategories().subscribeOn(Schedulers.io())
                 .zipWith(categoryDao.getCategoriesAndProducts(code)
                     .subscribeOn(Schedulers.io()),
                     { categoriesList, categoryProducts ->
                         val productListItems = ArrayList<RecyclerViewItems>()
 
                         //All category List
-                        productListItems.add(RecyclerViewItems.CategoryTitle("Categories","Categories"))
-                        val items = categoriesList.mapToCategoryChipList()
+                        productListItems.add(
+                            RecyclerViewItems.CategoryTitle("Categories", "Categories")
+                        )
+                        val items = categoriesList.mapToCategoryChipList(code)
                         productListItems.add(items)
 
                         //categories with its products list
@@ -135,22 +144,18 @@ class ShopRepositoryImpl @Inject constructor(
 
                         //return the complete list
                         productListItems.toList()
-                    }).observeOn(Schedulers.io()).subscribe({ item->
+                    })
+                .subscribeOn(Schedulers.io())
+                .subscribe({ item ->
                     emitter.onNext(Resources.Success<List<RecyclerViewItems>>(item))
                     Timber.e("$item")
                 }, {
                     Timber.e(it)
-                    emitter.onNext(
-                        Resources.Error<List<RecyclerViewItems>>(
-                            "Something went wrong",
-                            null
-                        )
-                    )
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(
+                        it.localizedMessage ?: it.stackTraceToString()))
                 })
-        compositeDisposable.add(disposable)
         }
     }
-
 
 
     override fun clear() {

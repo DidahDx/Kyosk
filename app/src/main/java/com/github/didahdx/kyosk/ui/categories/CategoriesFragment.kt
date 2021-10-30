@@ -15,6 +15,7 @@ import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.data.mapper.mapToCategoryEntity
 import com.github.didahdx.kyosk.databinding.CategoriesFragmentBinding
 import com.github.didahdx.kyosk.ui.BaseFragment
+import com.github.didahdx.kyosk.ui.MainActivity
 import com.github.didahdx.kyosk.ui.catergory.CategoryFragment.Companion.categoryTitle
 import com.github.didahdx.kyosk.ui.extensions.hide
 import com.github.didahdx.kyosk.ui.extensions.navigateSafe
@@ -30,7 +31,9 @@ class CategoriesFragment : BaseFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        (requireNotNull(this.activity).application as App).appComponent.inject(this)
+        val fragmentComponent = (requireNotNull(this.activity).application as App)
+            .appComponent.getFragmentComponentFactory().create()
+        fragmentComponent.inject(this)
     }
 
 
@@ -59,10 +62,10 @@ class CategoriesFragment : BaseFragment() {
                         .navigateSafe(R.id.action_categoriesFragment_to_categoryFragment, bundle)
                 }
                 is RecyclerViewItems.ProductItem -> {
-                   //not used
+                    //not used
                 }
                 is RecyclerViewItems.ProductItemList -> {
-                   //not used
+                    //not used
                 }
             }
         }

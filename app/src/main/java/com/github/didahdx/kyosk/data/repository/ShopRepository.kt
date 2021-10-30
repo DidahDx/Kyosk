@@ -12,8 +12,8 @@ import io.reactivex.rxjava3.core.Observable
 interface ShopRepository {
     fun getCategories(): Observable<List<CategoryListDto>>
     fun getProducts(): Observable<List<ProductItemDto>>
-    fun getAllProducts(code:String): Observable<Resources<List<RecyclerViewItems>>>
-    fun fetchAll(code:String): Observable<Resources<List<RecyclerViewItems>>>
-    fun getAllProductsDb(code:String): Observable<Resources<List<RecyclerViewItems>>>
+    fun getAllProducts(code: String): Observable<Resources<List<RecyclerViewItems>>>
+    fun fetchAll(code: String): Observable<Resources<List<RecyclerViewItems>>>
+    fun getAllProductsDb(code: String): Observable<Resources<List<RecyclerViewItems>>>
     fun clear()
 }

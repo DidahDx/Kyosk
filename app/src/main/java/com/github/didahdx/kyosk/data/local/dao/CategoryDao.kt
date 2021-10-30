@@ -20,7 +20,7 @@ interface CategoryDao {
 
     @Transaction
     @Query("SELECT * FROM CategoryEntity WHERE code=(case when :code='All' then code else :code end)  GROUP BY description ORDER BY description")
-    fun getCategoriesAndProducts(code:String): Observable<List<CategoryProductsRelation>>
+    fun getCategoriesAndProducts(code: String): Observable<List<CategoryProductsRelation>>
 
 
     @Transaction

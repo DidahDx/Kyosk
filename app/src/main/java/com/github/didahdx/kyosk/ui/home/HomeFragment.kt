@@ -20,6 +20,7 @@ import com.github.didahdx.kyosk.ui.extensions.hide
 import com.github.didahdx.kyosk.ui.extensions.navigateSafe
 import com.github.didahdx.kyosk.ui.extensions.snackBar
 import timber.log.Timber
+import javax.inject.Inject
 
 class HomeFragment : BaseFragment() {
 
@@ -29,6 +30,8 @@ class HomeFragment : BaseFragment() {
     private var _binding: HomeFragmentBinding? = null
     private val binding get() = _binding!!
 
+    @Inject
+    lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
     companion object {
         const val productId = "productId"
@@ -36,8 +39,9 @@ class HomeFragment : BaseFragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        val appComp = (requireNotNull(this.activity).application as App).appComponent
-        appComp.inject(this)
+        val fragmentComponent = (requireNotNull(this.activity).application as App)
+            .appComponent.getFragmentComponentFactory().create()
+        fragmentComponent.inject(this)
     }
 
     override fun onCreateView(
@@ -45,12 +49,10 @@ class HomeFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = HomeFragmentBinding.inflate(inflater, container, false)
-       val recyclerViewAdapter = RecyclerViewAdapter()
         binding.mainRecyclerview.apply {
             layoutManager = LinearLayoutManager(binding.root.context)
             adapter = recyclerViewAdapter
         }
-
 
         recyclerViewAdapter.itemClickListener = { _, item, _ ->
             when (item) {
@@ -58,7 +60,6 @@ class HomeFragment : BaseFragment() {
                     //not used
                 }
                 is RecyclerViewItems.CategoryTitle -> {
-
                     val bundle =
                         bundleOf(CategoryFragment.categoryTitle to item.mapToCategoryEntity())
                     this.findNavController()
@@ -102,11 +103,12 @@ class HomeFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        homeViewModel.setFilter("All")
+        homeViewModel.filter.value?.let { homeViewModel.setFilter(it) }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.mainRecyclerview.adapter = null
         _binding = null
     }
 

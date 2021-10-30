@@ -14,7 +14,7 @@ data class CategoryEntity(
     @PrimaryKey
     var code: String,
     var description: String
-):Parcelable{
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
         parcel.readString().toString()

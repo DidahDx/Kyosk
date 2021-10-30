@@ -7,13 +7,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import com.github.didahdx.kyosk.R
 import com.github.didahdx.kyosk.databinding.*
+import com.github.didahdx.kyosk.di.FragmentScope
 import com.github.didahdx.kyosk.ui.staterestorationadapter.NestedRecyclerViewStateRecoverAdapter
+import javax.inject.Inject
 
 /**
  * Created by Daniel Didah on 10/24/21.
  */
-class RecyclerViewAdapter :
-    NestedRecyclerViewStateRecoverAdapter<RecyclerViewItems, RecyclerViewHolder>(RecyclerViewDiffUtil()) {
+@FragmentScope
+class RecyclerViewAdapter @Inject constructor():
+    NestedRecyclerViewStateRecoverAdapter<RecyclerViewItems, RecyclerViewHolder>(
+        RecyclerViewDiffUtil()
+    ) {
     var itemClickListener: ((view: View, item: RecyclerViewItems, position: Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewHolder {
@@ -35,14 +40,16 @@ class RecyclerViewAdapter :
                     )
                 )
             }
-            R.layout.item_categories_chips ->{
-                RecyclerViewHolder.CategoryChipViewHolder(ItemCategoriesChipsBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
-                ))
+            R.layout.item_categories_chips -> {
+                RecyclerViewHolder.CategoryChipViewHolder(
+                    ItemCategoriesChipsBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
             }
-            R.layout.item_product ->{
+            R.layout.item_product -> {
                 RecyclerViewHolder.ProductItemViewHolder(
                     ItemProductBinding.inflate(
                         LayoutInflater.from(parent.context),
@@ -56,7 +63,9 @@ class RecyclerViewAdapter :
                     ItemTitleHeaderBinding.inflate(
                         LayoutInflater.from(parent.context),
                         parent,
-                        false))
+                        false
+                    )
+                )
             }
             else -> throw IllegalArgumentException("Invalid Type")
         }
@@ -83,7 +92,7 @@ class RecyclerViewAdapter :
             is RecyclerViewItems.CategoriesChipList -> R.layout.item_horizontal_category
             is RecyclerViewItems.CategoryTitle -> R.layout.item_title_header
             is RecyclerViewItems.ProductItem -> R.layout.item_product
-            is RecyclerViewItems.CategoryChip ->R.layout.item_categories_chips
+            is RecyclerViewItems.CategoryChip -> R.layout.item_categories_chips
         }
     }
 }
