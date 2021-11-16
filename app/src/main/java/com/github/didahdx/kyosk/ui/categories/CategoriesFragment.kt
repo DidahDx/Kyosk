@@ -12,10 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.github.didahdx.kyosk.App
 import com.github.didahdx.kyosk.R
 import com.github.didahdx.kyosk.common.Resources
-import com.github.didahdx.kyosk.data.mapper.mapToCategoryEntity
 import com.github.didahdx.kyosk.databinding.CategoriesFragmentBinding
 import com.github.didahdx.kyosk.ui.BaseFragment
-import com.github.didahdx.kyosk.ui.MainActivity
 import com.github.didahdx.kyosk.ui.catergory.CategoryFragment.Companion.categoryTitle
 import com.github.didahdx.kyosk.ui.extensions.hide
 import com.github.didahdx.kyosk.ui.extensions.navigateSafe

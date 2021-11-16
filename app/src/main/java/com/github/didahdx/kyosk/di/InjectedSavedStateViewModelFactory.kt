@@ -11,8 +11,10 @@ import javax.inject.Provider
 
 @Reusable
 class InjectedSavedStateViewModelFactory @Inject constructor(
-    private val assistedFactories: Map<Class<out ViewModel>, @JvmSuppressWildcards AssistedSavedStateViewModelFactory<out ViewModel>>,
-    private val viewModelProviders: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
+    private val assistedFactories: Map<Class<out ViewModel>,
+            @JvmSuppressWildcards AssistedSavedStateViewModelFactory<out ViewModel>>,
+    private val viewModelProviders: Map<Class<out ViewModel>,
+            @JvmSuppressWildcards Provider<ViewModel>>
 ) {
     /**
      * Creates instance of ViewModel either annotated with @AssistedInject or @Inject and passes dependencies it needs.

@@ -2,8 +2,6 @@ package com.github.didahdx.kyosk.data.repository
 
 import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.data.local.dao.CategoryDao
-import com.github.didahdx.kyosk.data.mapper.mapToCategoryEntity
-import com.github.didahdx.kyosk.data.mapper.mapToCategoryTitle
 import com.github.didahdx.kyosk.data.remote.NetworkAvailability
 import com.github.didahdx.kyosk.data.remote.api.ShopApiServices
 import com.github.didahdx.kyosk.data.remote.dto.CategoryListDto

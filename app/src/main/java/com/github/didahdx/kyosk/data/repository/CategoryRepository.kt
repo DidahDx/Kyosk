@@ -2,8 +2,6 @@ package com.github.didahdx.kyosk.data.repository
 
 import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.data.local.dao.ProductDao
-import com.github.didahdx.kyosk.data.mapper.mapToProductEntity
-import com.github.didahdx.kyosk.data.mapper.mapToProductItem
 import com.github.didahdx.kyosk.data.remote.NetworkAvailability
 import com.github.didahdx.kyosk.data.remote.api.ShopApiServices
 import com.github.didahdx.kyosk.data.remote.dto.ProductItemDto
