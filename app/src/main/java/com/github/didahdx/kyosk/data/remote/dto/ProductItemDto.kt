@@ -1,5 +1,6 @@
 package com.github.didahdx.kyosk.data.remote.dto
 
+import com.github.didahdx.kyosk.data.local.entities.ProductEntity
 import com.squareup.moshi.Json
 
 data class ProductItemDto(
@@ -17,4 +18,9 @@ data class ProductItemDto(
     val rating: Rating,
     @Json(name = "title")
     val title: String
-)
+){
+
+    fun mapToProductEntity(): ProductEntity {
+        return ProductEntity(category, description, id, image, price, title)
+    }
+}

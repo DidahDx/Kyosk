@@ -2,8 +2,6 @@ package com.github.didahdx.kyosk.data.repository
 
 import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.data.local.dao.ProductDao
-import com.github.didahdx.kyosk.data.mapper.mapToProductEntity
-import com.github.didahdx.kyosk.data.mapper.mapToProductItem
 import com.github.didahdx.kyosk.data.remote.NetworkAvailability
 import com.github.didahdx.kyosk.data.remote.api.ShopApiServices
 import com.github.didahdx.kyosk.data.remote.dto.ProductItemDto
@@ -42,14 +40,20 @@ class CategoryRepository @Inject constructor(
                         .subscribeOn(Schedulers.io())
                 }.map { productList ->
                     val list = ArrayList<RecyclerViewItems>()
-//                    list.add(categoryTitle)
                     list.addAll(productList.map { it.mapToProductItem() })
                     list.toList()
                 }.subscribe({
                     emitter.onNext(Resources.Success<List<RecyclerViewItems>>(it))
                 }, { error ->
                     Timber.e(error)
-                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.stackTraceToString()))
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.localizedMessage ?: error.stackTraceToString()))
+
+                    getAllProductsByCategoryDb(categoryTitle).subscribeOn(Schedulers.io())
+                        .subscribe({
+                                   emitter.onNext(it)
+                        },{errors->
+                            emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.localizedMessage ?: errors.stackTraceToString()))
+                        })
                 })
 
         }
@@ -70,7 +74,7 @@ class CategoryRepository @Inject constructor(
                     emitter.onNext(Resources.Success<List<RecyclerViewItems>>(it))
                 }, { error ->
                     Timber.e(error)
-                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.stackTraceToString()))
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.localizedMessage ?: error.stackTraceToString()))
                 })
 
         }

@@ -2,8 +2,6 @@ package com.github.didahdx.kyosk.data.repository
 
 import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.data.local.dao.CategoryDao
-import com.github.didahdx.kyosk.data.mapper.mapToCategoryEntity
-import com.github.didahdx.kyosk.data.mapper.mapToCategoryTitle
 import com.github.didahdx.kyosk.data.remote.NetworkAvailability
 import com.github.didahdx.kyosk.data.remote.api.ShopApiServices
 import com.github.didahdx.kyosk.data.remote.dto.CategoryListDto
@@ -55,6 +53,17 @@ class CategoriesRepository @Inject constructor(
                 }, { error ->
                     Timber.e(error)
                     emitter.onNext(Resources.Error<List<RecyclerViewItems.CategoryTitle>>(error.stackTraceToString()))
+
+                    getAllCategoriesDb().subscribeOn(Schedulers.io())
+                        .subscribe({
+                                   emitter.onNext(it)
+                        },{errors->
+                            emitter.onNext(
+                                Resources.Error<List<RecyclerViewItems.CategoryTitle>>(
+                                    errors.localizedMessage ?: errors.stackTraceToString()
+                                )
+                            )
+                        })
                 })
 
         }

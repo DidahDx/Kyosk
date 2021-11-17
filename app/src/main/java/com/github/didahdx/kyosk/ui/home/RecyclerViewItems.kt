@@ -2,6 +2,7 @@ package com.github.didahdx.kyosk.ui.home
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.github.didahdx.kyosk.data.local.entities.CategoryEntity
 
 /**
  * Created by Daniel Didah on 10/22/21.
@@ -20,7 +21,11 @@ sealed class RecyclerViewItems {
     data class CategoryTitle(
         var code: String,
         var description: String
-    ) : RecyclerViewItems()
+    ) : RecyclerViewItems(){
+        fun mapToCategoryEntity(): CategoryEntity {
+            return CategoryEntity(code, description)
+        }
+    }
 
     data class CategoryChip(
         var isSelected: Boolean,

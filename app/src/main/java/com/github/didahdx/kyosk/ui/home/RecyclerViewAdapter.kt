@@ -74,10 +74,7 @@ class RecyclerViewAdapter @Inject constructor():
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
         holder.itemClickListener = itemClickListener
         when (holder) {
-            is RecyclerViewHolder.CategoriesChipViewHolderList -> {
-                holder.bind(getItem(position) as RecyclerViewItems.CategoriesChipList)
-//                holder.setChipCheckChip(position)
-            }
+            is RecyclerViewHolder.CategoriesChipViewHolderList -> holder.bind(getItem(position) as RecyclerViewItems.CategoriesChipList)
             is RecyclerViewHolder.ProductsViewHolderList -> holder.bind(getItem(position) as RecyclerViewItems.ProductItemList)
             is RecyclerViewHolder.ProductItemViewHolder -> holder.bind(getItem(position) as RecyclerViewItems.ProductItem)
             is RecyclerViewHolder.CategoryChipViewHolder -> holder.bind(getItem(position) as RecyclerViewItems.CategoryChip)

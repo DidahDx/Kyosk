@@ -2,9 +2,7 @@ package com.github.didahdx.kyosk.data.repository
 
 import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.data.local.dao.ProductDao
-import com.github.didahdx.kyosk.data.mapper.mapToProductItem
 import com.github.didahdx.kyosk.ui.home.RecyclerViewItems
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
@@ -28,7 +26,7 @@ class ProductDetailRepository @Inject constructor(
                     emitter.onNext(Resources.Success<RecyclerViewItems.ProductItem>(product.mapToProductItem()))
                 }, {
                     Timber.e(it)
-                    emitter.onNext(Resources.Error<RecyclerViewItems.ProductItem>(it.stackTraceToString()))
+                    emitter.onNext(Resources.Error<RecyclerViewItems.ProductItem>(it.localizedMessage ?: it.stackTraceToString()))
                 })
 
         }
