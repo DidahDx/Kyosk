@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.github.didahdx.kyosk.ui.home.RecyclerViewItems
 
 
 /**
@@ -40,5 +41,12 @@ data class CategoryEntity(
         }
     }
 
+    fun mapToCategoryTitle(): RecyclerViewItems.CategoryTitle {
+        return RecyclerViewItems.CategoryTitle(code, description)
+    }
+
+    fun mapToCategoryChip(selectedCode: String): RecyclerViewItems.CategoryChip {
+        return RecyclerViewItems.CategoryChip(selectedCode == code, code, description)
+    }
 
 }

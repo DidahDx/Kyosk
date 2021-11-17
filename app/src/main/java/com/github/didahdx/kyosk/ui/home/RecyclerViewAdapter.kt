@@ -96,7 +96,7 @@ class RecyclerViewAdapter @Inject constructor():
 
 class RecyclerViewDiffUtil : DiffUtil.ItemCallback<RecyclerViewItems>() {
     override fun areItemsTheSame(oldItem: RecyclerViewItems, newItem: RecyclerViewItems): Boolean {
-        return oldItem::class.java == newItem::class.java
+        return oldItem == newItem
     }
 
     override fun areContentsTheSame(

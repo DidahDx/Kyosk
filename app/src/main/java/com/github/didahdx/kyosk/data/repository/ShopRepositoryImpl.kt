@@ -71,34 +71,10 @@ class ShopRepositoryImpl @Inject constructor(
                     emitter.onNext(Resources.Error<List<RecyclerViewItems>>(it.localizedMessage ?: it.stackTraceToString())) }
                 .switchMap {
                     //get all categories and products from database
-                    return@switchMap categoryDao.getAllCategories().subscribeOn(Schedulers.io())
-                        .zipWith(categoryDao.getCategoriesAndProducts(code)
-                            .subscribeOn(Schedulers.io()),
-                            { categoriesList, categoryProducts ->
-                                val productListItems = ArrayList<RecyclerViewItems>()
-
-                                //All category List
-                                productListItems.add(
-                                    RecyclerViewItems.CategoryTitle(
-                                        "Categories",
-                                        "Categories"
-                                    )
-                                )
-                                val items = categoriesList.mapToCategoryChipList(code)
-                                productListItems.add(items)
-
-                                //categories with its products list
-                                categoryProducts.map { categoryProductsRelation ->
-                                    productListItems.add(categoryProductsRelation.categoryEntity.mapToCategoryTitle())
-                                    productListItems.add(categoryProductsRelation.mapToProductItemList())
-                                }
-
-                                //return the complete list
-                                productListItems.toList()
-                            })
+                    return@switchMap getAllProductsDb(code)
                 }.subscribe({ item ->
-                    emitter.onNext(Resources.Success<List<RecyclerViewItems>>(item))
-                    Timber.e("$item")
+                    emitter.onNext(item)
+                    Timber.e("shop $item")
                 }, { error ->
                     Timber.e(error)
                     emitter.onNext(
@@ -106,6 +82,17 @@ class ShopRepositoryImpl @Inject constructor(
                             error.localizedMessage ?: error.stackTraceToString()
                         )
                     )
+
+                    getAllProductsDb(code).subscribeOn(Schedulers.io())
+                        .subscribe({
+                                   emitter.onNext(it)
+                        },{ erorrs->
+                            emitter.onNext(
+                                Resources.Error<List<RecyclerViewItems>>(
+                                    erorrs.localizedMessage ?: erorrs.stackTraceToString()
+                                )
+                            )
+                        })
                 })
         }
     }
