@@ -42,14 +42,20 @@ class CategoryRepository @Inject constructor(
                         .subscribeOn(Schedulers.io())
                 }.map { productList ->
                     val list = ArrayList<RecyclerViewItems>()
-//                    list.add(categoryTitle)
                     list.addAll(productList.map { it.mapToProductItem() })
                     list.toList()
                 }.subscribe({
                     emitter.onNext(Resources.Success<List<RecyclerViewItems>>(it))
                 }, { error ->
                     Timber.e(error)
-                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.stackTraceToString()))
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.localizedMessage ?: error.stackTraceToString()))
+
+                    getAllProductsByCategoryDb(categoryTitle).subscribeOn(Schedulers.io())
+                        .subscribe({
+                                   emitter.onNext(it)
+                        },{errors->
+                            emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.localizedMessage ?: errors.stackTraceToString()))
+                        })
                 })
 
         }
@@ -70,7 +76,7 @@ class CategoryRepository @Inject constructor(
                     emitter.onNext(Resources.Success<List<RecyclerViewItems>>(it))
                 }, { error ->
                     Timber.e(error)
-                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.stackTraceToString()))
+                    emitter.onNext(Resources.Error<List<RecyclerViewItems>>(error.localizedMessage ?: error.stackTraceToString()))
                 })
 
         }

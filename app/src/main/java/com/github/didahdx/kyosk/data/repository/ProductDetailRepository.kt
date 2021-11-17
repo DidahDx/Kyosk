@@ -27,7 +27,7 @@ class ProductDetailRepository @Inject constructor(
                     emitter.onNext(Resources.Success<RecyclerViewItems.ProductItem>(product.mapToProductItem()))
                 }, {
                     Timber.e(it)
-                    emitter.onNext(Resources.Error<RecyclerViewItems.ProductItem>(it.stackTraceToString()))
+                    emitter.onNext(Resources.Error<RecyclerViewItems.ProductItem>(it.localizedMessage ?: it.stackTraceToString()))
                 })
 
         }
