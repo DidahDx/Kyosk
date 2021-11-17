@@ -2,6 +2,7 @@ package com.github.didahdx.kyosk.data.repository
 
 import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.data.local.dao.ProductDao
+import com.github.didahdx.kyosk.data.mapper.mapToProductItem
 import com.github.didahdx.kyosk.ui.home.RecyclerViewItems
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable

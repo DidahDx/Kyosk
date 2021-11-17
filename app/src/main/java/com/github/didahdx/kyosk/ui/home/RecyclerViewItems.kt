@@ -21,12 +21,7 @@ sealed class RecyclerViewItems {
     data class CategoryTitle(
         var code: String,
         var description: String
-    ) : RecyclerViewItems(){
-
-        fun mapToCategoryEntity(): CategoryEntity {
-            return CategoryEntity(code, description)
-        }
-    }
+    ) : RecyclerViewItems()
 
     data class CategoryChip(
         var isSelected: Boolean,

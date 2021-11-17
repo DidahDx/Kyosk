@@ -14,6 +14,7 @@ import com.github.didahdx.kyosk.App
 import com.github.didahdx.kyosk.R
 import com.github.didahdx.kyosk.common.Resources
 import com.github.didahdx.kyosk.data.local.entities.CategoryEntity
+import com.github.didahdx.kyosk.data.mapper.mapToCategoryTitle
 import com.github.didahdx.kyosk.databinding.CategoryFragmentBinding
 import com.github.didahdx.kyosk.ui.BaseFragment
 import com.github.didahdx.kyosk.ui.extensions.hide
