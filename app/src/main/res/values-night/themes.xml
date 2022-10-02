@@ -13,5 +13,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="bottomNavigationStyle">@style/BottomNav</item>
+        <item name="chipStyle">@style/Widget.App.Chip</item>
     </style>
 </resources>
